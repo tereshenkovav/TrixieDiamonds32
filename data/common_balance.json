@@ -1,0 +1,11 @@
+{
+  "PlayerV":45,
+  "FireballV":120,
+  "MaxMana":8,
+  "ManaBonusInc":3,
+  "MaxHealth":3,
+  "ProtectAfterHitMS":2000,
+  "ManaUpIntervalMS":5000,
+  "JumpManaCost":1,
+  "FireballManaCost":3
+}

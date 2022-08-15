@@ -1,0 +1,24 @@
+{
+  "MaxBonus":21,
+  "MaxSpawnBonus":21,
+  "MonsterSpawnIntervalMS":2500,
+  "BonusSpawnIntervalMS":3000,
+  "InitialMonsters":10,
+  "MaxSpawnMonsters":9999,
+  "InitialBonuses":0,
+  "StartX":50,
+  "StartY":4,
+  "ExtraBonuses":
+   [
+      {
+        "x":600, 
+        "y":8,
+        "type":"mana"
+      },
+      {
+        "x":400, 
+        "y":4,
+        "type":"mana"
+      }
+   ]
+}
