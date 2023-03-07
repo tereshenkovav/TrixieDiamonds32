@@ -2,7 +2,7 @@ QT += core script
 
 CONFIG += c++11
 
-DESTDIR = ..\bin
+DESTDIR = ../bin
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -16,23 +16,38 @@ DEFINES += KEYCODE_FROM_SFML
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-INCLUDEPATH += core
+COREDIR = ../GameStudyJS-core
+INCLUDEPATH += $$COREDIR
+DEPENDPATH += $$COREDIR
 
 SOURCES += \
-        core/animation.cpp \
-        core/game.cpp \
-        core/line.cpp \
-        core/qgamesystem.cpp \
-        core/rect.cpp \
-        core/sound.cpp \
-        core/sprite.cpp \
-        core/text.cpp \
-        core/pcxtexloader.cpp \
-        extproc.cpp \
-        main.cpp \
-        map.cpp \
-        mapviewer.cpp
-        
+    $$COREDIR/animation.cpp \
+    $$COREDIR/game.cpp \
+    $$COREDIR/line.cpp \
+    $$COREDIR/pcxtexloader.cpp \
+    $$COREDIR/qgamesystem.cpp \
+    $$COREDIR/rect.cpp \
+    $$COREDIR/sound.cpp \
+    $$COREDIR/sprite.cpp \
+    $$COREDIR/text.cpp \
+    extproc.cpp \
+    main.cpp \
+    map.cpp \
+    mapviewer.cpp
+
+HEADERS += \
+    $$COREDIR/animation.h \
+    $$COREDIR/game.h \
+    $$COREDIR/line.h \
+    $$COREDIR/pcxtexloader.h \
+    $$COREDIR/qgamesystem.h \
+    $$COREDIR/rect.h \
+    $$COREDIR/sound.h \
+    $$COREDIR/sprite.h \
+    $$COREDIR/text.h \
+    extproc.h \
+    map.h \
+    mapviewer.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -56,17 +71,3 @@ unix {
   CONFIG(debug, debug|release): LIBS += -lsfml-audio-d -lsfml-graphics-d -lsfml-network-d -lsfml-window-d -lsfml-system-d
 }
 
-HEADERS += \
-    core/animation.h \
-    core/game.h \
-    core/line.h \
-    core/qgamesystem.h \
-    core/rect.h \
-    core/sound.h \
-    core/sprite.h \
-    core/text.h \
-    core/pcxtexloader.h \
-    extproc.h \
-    map.h \
-    mapviewer.h
-    
