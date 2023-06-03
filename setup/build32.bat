@@ -8,7 +8,7 @@ rm -f TrixieDiamonds32-1.0.0-Win32.zip
 SET TMPDIR=%TEMP%\HJD1xf612ZYg4
 mkdir %TMPDIR%\bin
 copy %QTDIR%\libgcc_s_dw2-1.dll  %TEMP%\HJD1xf612ZYg4\bin
-copy %QTDIR%\libstdc++-6.dll     %TEMP%\HJD1xf612ZYg4\bin
+copy "%QTDIR%\libstdc++-6.dll"     %TEMP%\HJD1xf612ZYg4\bin
 copy %QTDIR%\libwinpthread-1.dll %TEMP%\HJD1xf612ZYg4\bin
 copy %QTDIR%\Qt5Core.dll         %TEMP%\HJD1xf612ZYg4\bin
 copy %QTDIR%\Qt5Script.dll       %TEMP%\HJD1xf612ZYg4\bin
