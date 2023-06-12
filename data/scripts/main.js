@@ -20,6 +20,11 @@ var tekmenu = MENU_ARCADE ;
 $include<rects.inc>
 
 function Init() {    
+   // Lang settings
+   var langs = system.loadObject("languages.json") ;
+   var deflang = system.loadObject("deflang.json") ;
+   system.setUsedLanguages(langs) ;
+   if (deflang!=null) system.setCurrentLanguage(deflang) ;
 
    strings = system.loadObject("strings.json") ;  
    game.setGameTitle(strings.gametitle) ;
