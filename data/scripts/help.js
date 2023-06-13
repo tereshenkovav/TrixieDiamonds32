@@ -23,7 +23,7 @@ $include<funcs.inc>
 
 function Init() {    
 
-   strings = system.loadObject("strings.json") ;  
+   strings = system.loadObject("strings.json") ;
    game.setBackgroundColor(0,0,0) ;
 
    star = game.loadSpritePCX8bit('star.pcx',true) ;

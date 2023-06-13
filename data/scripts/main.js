@@ -1,4 +1,5 @@
 var logo ;
+var langico ;
 var selector ;
 var strings ;
 var rects_menu = new Array();
@@ -12,27 +13,48 @@ var scenepos ;
 
 const MENU_ARCADE = 0 ;
 const MENU_FREEPLAY = 1 ;
-const MENU_HELP = 2 ;
-const MENU_EXIT = 3 ;
+const MENU_LANG = 2 ;
+const MENU_HELP = 3 ;
+const MENU_EXIT = 4 ;
 
 var tekmenu = MENU_ARCADE ;
 
 $include<rects.inc>
 
-function Init() {    
-   // Lang settings
-   var langs = system.loadObject("languages.json") ;
-   var deflang = system.loadObject("deflang.json") ;
-   system.setUsedLanguages(langs) ;
-   if (deflang!=null) system.setCurrentLanguage(deflang) ;
+function loadLangResources() {
 
-   strings = system.loadObject("strings.json") ;  
+   strings = system.loadObject("strings.json") ;
    game.setGameTitle(strings.gametitle) ;
-   game.setBackgroundColor(0,0,0) ;
 
    logo = game.loadSpritePCX8bit('logo.pcx',true) ;
    logo.setSmooth(false) ;
    logo.setScale(200) ;
+
+   langico = game.loadSprite('lang.png') ;
+   langico.setSmooth(false) ;
+
+   menu = [] ;
+   menu.push(game.loadText("Arial.ttf",strings.menuarcade,20)) ;
+   menu.push(game.loadText("Arial.ttf",strings.menufreeplay,20)) ;
+   menu.push(game.loadText("Arial.ttf",strings.menulang+": "+system.getCurrentLanguage().toUpperCase(),20)) ;
+   menu.push(game.loadText("Arial.ttf",strings.menuhelp,20)) ;
+   menu.push(game.loadText("Arial.ttf",strings.menuexit,20)) ;
+   for (var i=0; i<menu.length; i++)
+     menu[i].setColor(200,200,200) ;
+}
+
+function Init() {    
+   // Lang settings
+   if (system.getCurrentLanguage()=="") {
+     var langs = system.loadObject("languages.json") ;
+     var deflang = system.loadObject("deflang.json") ;
+     system.setUsedLanguages(langs) ;
+     if (deflang!=null) system.setCurrentLanguage(deflang) ;
+   }
+
+   loadLangResources() ;
+
+   game.setBackgroundColor(0,0,0) ;
 
    gnd = game.loadSpritePCX8bit('gnd_mid.pcx',true) ;
    gnd.setSmooth(false) ;
@@ -53,13 +75,6 @@ function Init() {
 
    snd_menu = game.loadSound("menu.wav") ;
 
-   menu.push(game.loadText("Arial.ttf",strings.menuarcade,20)) ;
-   menu.push(game.loadText("Arial.ttf",strings.menufreeplay,20)) ;
-   menu.push(game.loadText("Arial.ttf",strings.menuhelp,20)) ;
-   menu.push(game.loadText("Arial.ttf",strings.menuexit,20)) ;
-   for (var i=0; i<menu.length; i++)
-     menu[i].setColor(200,200,200) ;
-
    makeRects(rects_menu) ;
 
    scenestage=0 ;
@@ -71,12 +86,13 @@ function Init() {
 function Render() {
    logo.renderTo(400,100) ;
 
-   renderRects(rects_menu,250,160,300,220) ;
+   renderRects(rects_menu,250,160,300,260) ;
 
    for (var i=0; i<menu.length; i++) {
      if (tekmenu==i) selector.renderTo(300,210+i*40) ;
      menu[i].printTo(340,200+i*40) ;
    }
+   langico.renderTo(340+menu[MENU_LANG].getTextWidth()+30,200+MENU_LANG*40+12) ;
 
    if (scenestage==0) {
      trixie_walk.mirrorHorz(false) ;
@@ -116,6 +132,10 @@ function Frame(dt) {
    if (game.isKeyDown(KEY_ENTER)) {
       if (tekmenu==MENU_ARCADE) game.goToScript("levels",{level:0,mode:"arcade"}) ;
       if (tekmenu==MENU_FREEPLAY) game.goToScript("levels",{level:0,mode:"freeplay"}) ;
+      if (tekmenu==MENU_LANG) {
+        system.switchCurrentLanguage() ;
+        loadLangResources() ;
+      }
       if (tekmenu==MENU_HELP) game.goToScript("help",null) ;
       if (tekmenu==MENU_EXIT) return false ;
    }
