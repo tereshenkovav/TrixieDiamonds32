@@ -1,3 +1,7 @@
+!ifndef GAMELANG
+  !error "Value of GAMELANG not defined"
+!endif
+
 Unicode True
 RequestExecutionLevel admin
 SetCompressor /SOLID zlib
@@ -5,7 +9,7 @@ AutoCloseWindow true
 Icon main.ico
 XPStyle on
 
-!include StrData.nsi
+!include LangData_${GAMELANG}.nsi
 
 !include "FileFunc.nsh"
 !insertmacro GetTime
@@ -13,9 +17,9 @@ XPStyle on
 !define TEMP1 $R0 
 
 ReserveFile /plugin InstallOptions.dll
-ReserveFile "runapp.ini"
+ReserveFile "runapp_${GAMELANG}.ini"
 
-OutFile "TrixieDiamonds32-1.0.0-Win32.exe"
+OutFile "TrixieDiamonds32-${UPPERLANG}-1.0.0-Win32.exe"
 
 var is_update
 
@@ -31,7 +35,7 @@ Name $(GameGameName)
 
 Function .onInit
   InitPluginsDir
-  File /oname=$PLUGINSDIR\runapp.ini "runapp.ini"
+  File /oname=$PLUGINSDIR\runapp_${GAMELANG}.ini "runapp_${GAMELANG}.ini"
 
   StrCpy $INSTDIR $PROGRAMFILES\TrixieDiamonds32
 
@@ -45,7 +49,7 @@ FunctionEnd
 Function .onInstSuccess
   StrCmp $is_update "1" SkipAll
 
-  ReadINIStr ${TEMP1} "$PLUGINSDIR\runapp.ini" "Field 1" "State"
+  ReadINIStr ${TEMP1} "$PLUGINSDIR\runapp_${GAMELANG}.ini" "Field 1" "State"
   StrCmp ${TEMP1} "0" SkipDesktop
 
   SetOutPath $INSTDIR\bin
@@ -53,7 +57,7 @@ Function .onInstSuccess
 
 SkipDesktop:
 
-  ReadINIStr ${TEMP1} "$PLUGINSDIR\runapp.ini" "Field 2" "State"
+  ReadINIStr ${TEMP1} "$PLUGINSDIR\runapp_${GAMELANG}.ini" "Field 2" "State"
   StrCmp ${TEMP1} "0" SkipRun
 
   Exec $INSTDIR\bin\TrixieDiamonds.exe
@@ -98,6 +102,10 @@ Section "$(GameGameName)"
   SetOutPath $INSTDIR\data
   File /r ..\data\*
 
+  FileOpen $0 "$INSTDIR\data\deflang.json" w
+  FileWrite $0 '"${GAMELANG}"'
+  FileClose $0
+
   StrCmp $is_update "1" Skip2
   
   WriteUninstaller $INSTDIR\Uninst.exe
@@ -116,7 +124,7 @@ Section "$(GameGameName)"
                  "InstallDate"  "$2$1$0"
 
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TrixieDiamonds32" \
-                 "Publisher"  "$(DeveloperName)"
+                 "Publisher"  "$(PublisherName)"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TrixieDiamonds32" \
                  "DisplayVersion"  "1.0.0"
 
@@ -140,7 +148,7 @@ Function SetRunApp
 
   Push ${TEMP1}
 
-  InstallOptions::dialog "$PLUGINSDIR\runapp.ini"
+  InstallOptions::dialog "$PLUGINSDIR\runapp_${GAMELANG}.ini"
     Pop ${TEMP1}
   
   Pop ${TEMP1}
