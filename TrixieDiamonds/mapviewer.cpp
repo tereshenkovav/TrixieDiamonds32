@@ -4,7 +4,7 @@
 #include "pcxtexloader.h"
 #include <QRandomGenerator>
 
-bool pcx2sfTexture(sf::Texture * tex, const QString & filename, bool usetransp=true) {
+void pcx2sfTexture(sf::Texture * tex, const QString & filename, bool usetransp=true) {
     PcxTexLoader loader ;
     if (loader.loadFile(filename,usetransp)) {
         tex->create(loader.getWidth(),loader.getHeight()) ;
