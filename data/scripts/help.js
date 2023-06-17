@@ -71,15 +71,15 @@ function Init() {
    }
    // end dub
 
-   text_helppage = game.loadText("Arial.ttf","",20) ;
+   text_helppage = game.loadText("arial.ttf","",20) ;
    text_helppage.setColor(160,160,160) ;
    text_helppage.setAlignCenter() ;
-   text_helpinfo = game.loadText("Arial.ttf",strings.helpinfo,20) ;
+   text_helpinfo = game.loadText("arial.ttf",strings.helpinfo,20) ;
    text_helpinfo.setColor(160,160,160) ;
    text_helpinfo.setAlignCenter() ;
-   text_help = game.loadText("Arial.ttf","",24) ;
+   text_help = game.loadText("arial.ttf","",24) ;
    text_help.setColor(200,200,200) ;
-   text_title = game.loadText("Arial.ttf","",24) ;
+   text_title = game.loadText("arial.ttf","",24) ;
    text_title.setColor(200,200,200) ;
    text_title.setAlignCenter() ;
 

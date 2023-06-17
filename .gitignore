@@ -2,4 +2,5 @@
 *.pro.user
 *build-*
 *.exe
+bin/TrixieDiamonds
 data/deflang.json

@@ -37,7 +37,7 @@ function Init(arg) {
    snd_menu = game.loadSound("menu.wav") ;
    
    for (var i=0; i<LEVEL_COUNT; i++)
-     menu.push(game.loadText("Arial.ttf",strings.levelhead+" "+(i+1),20)) ;
+     menu.push(game.loadText("arial.ttf",strings.levelhead+" "+(i+1),20)) ;
    for (var i=0; i<LEVEL_COUNT; i++)
      if (i<=nextlevel) 
        menu[i].setColor(200,200,200) ;

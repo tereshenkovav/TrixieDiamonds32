@@ -12,7 +12,7 @@ function Init() {
 
    logo = game.loadSprite('final.png') ;
 
-   text_final = game.loadText("Arial.ttf",strings.textfinal,28) ;
+   text_final = game.loadText("arial.ttf",strings.textfinal,28) ;
    text_final.setColor(200,200,200) ;
 
    makeRects(rects_final) ;

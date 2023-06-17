@@ -34,11 +34,11 @@ function loadLangResources() {
    langico.setSmooth(false) ;
 
    menu = [] ;
-   menu.push(game.loadText("Arial.ttf",strings.menuarcade,20)) ;
-   menu.push(game.loadText("Arial.ttf",strings.menufreeplay,20)) ;
-   menu.push(game.loadText("Arial.ttf",strings.menulang+": "+system.getCurrentLanguage().toUpperCase(),20)) ;
-   menu.push(game.loadText("Arial.ttf",strings.menuhelp,20)) ;
-   menu.push(game.loadText("Arial.ttf",strings.menuexit,20)) ;
+   menu.push(game.loadText("arial.ttf",strings.menuarcade,20)) ;
+   menu.push(game.loadText("arial.ttf",strings.menufreeplay,20)) ;
+   menu.push(game.loadText("arial.ttf",strings.menulang+": "+system.getCurrentLanguage().toUpperCase(),20)) ;
+   menu.push(game.loadText("arial.ttf",strings.menuhelp,20)) ;
+   menu.push(game.loadText("arial.ttf",strings.menuexit,20)) ;
    for (var i=0; i<menu.length; i++)
      menu[i].setColor(200,200,200) ;
 }
