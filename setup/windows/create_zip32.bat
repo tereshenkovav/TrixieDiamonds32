@@ -6,8 +6,8 @@ exit
 :mainproc
 
 rm -f TrixieDiamonds32-%2-1.0.0-Win32.zip
-7z a -mx9 TrixieDiamonds32-%2-1.0.0-Win32.zip ..\bin
-7z a -mx9 TrixieDiamonds32-%2-1.0.0-Win32.zip ..\data
+7z a -mx9 TrixieDiamonds32-%2-1.0.0-Win32.zip ..\..\bin
+7z a -mx9 TrixieDiamonds32-%2-1.0.0-Win32.zip ..\..\data
 
 SET TMPDIR=%TEMP%\HJD1xf612ZYg4
 mkdir %TMPDIR%\bin

@@ -90,8 +90,8 @@ Section "$(GameGameName)"
   File main.ico
 
   SetOutPath $INSTDIR\bin
-  File ..\bin\TrixieDiamonds.exe
-  File ..\bin\*.dll
+  File ..\..\bin\TrixieDiamonds.exe
+  File ..\..\bin\*.dll
 
   FILE ${QTDIR}\libgcc_s_dw2-1.dll 
   FILE ${QTDIR}\libstdc++-6.dll    
@@ -100,7 +100,7 @@ Section "$(GameGameName)"
   FILE ${QTDIR}\Qt5Script.dll      
 
   SetOutPath $INSTDIR\data
-  File /r ..\data\*
+  File /r ..\..\data\*
 
   FileOpen $0 "$INSTDIR\data\deflang.json" w
   FileWrite $0 '"${GAMELANG}"'
