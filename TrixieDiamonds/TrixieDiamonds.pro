@@ -1,4 +1,5 @@
 QT += core script
+QT -= gui
 
 CONFIG += c++11
 
