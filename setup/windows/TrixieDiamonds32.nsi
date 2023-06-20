@@ -19,7 +19,7 @@ XPStyle on
 ReserveFile /plugin InstallOptions.dll
 ReserveFile "runapp_${GAMELANG}.ini"
 
-OutFile "TrixieDiamonds32-${UPPERLANG}-1.0.0-Win32.exe"
+OutFile "TrixieDiamonds32-${UPPERLANG}-${VERSION}-Win32.exe"
 
 var is_update
 
@@ -126,7 +126,7 @@ Section "$(GameGameName)"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TrixieDiamonds32" \
                  "Publisher"  "$(PublisherName)"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\TrixieDiamonds32" \
-                 "DisplayVersion"  "1.0.0"
+                 "DisplayVersion"  "${VERSION}"
 
   SetOutPath $INSTDIR\bin
   CreateDirectory "$SMPROGRAMS\$(GameName)"

@@ -5,9 +5,9 @@ exit
 
 :mainproc
 
-rm -f TrixieDiamonds32-%2-1.0.0-Win32.zip
-7z a -mx9 TrixieDiamonds32-%2-1.0.0-Win32.zip ..\..\bin
-7z a -mx9 TrixieDiamonds32-%2-1.0.0-Win32.zip ..\..\data
+rm -f TrixieDiamonds32-%2-%VERSION%-Win32.zip
+7z a -mx9 TrixieDiamonds32-%2-%VERSION%-Win32.zip ..\..\bin
+7z a -mx9 TrixieDiamonds32-%2-%VERSION%-Win32.zip ..\..\data
 
 SET TMPDIR=%TEMP%\HJD1xf612ZYg4
 mkdir %TMPDIR%\bin
@@ -19,5 +19,5 @@ copy %QTDIR%\Qt5Script.dll       %TEMP%\HJD1xf612ZYg4\bin
 mkdir %TMPDIR%\data
 echo "%1" > %TMPDIR%\data\deflang.json
 
-7z a -mx9 TrixieDiamonds32-%2-1.0.0-Win32.zip %TMPDIR%\bin
-7z a -mx9 TrixieDiamonds32-%2-1.0.0-Win32.zip %TMPDIR%\data
+7z a -mx9 TrixieDiamonds32-%2-%VERSION%-Win32.zip %TMPDIR%\bin
+7z a -mx9 TrixieDiamonds32-%2-%VERSION%-Win32.zip %TMPDIR%\data
