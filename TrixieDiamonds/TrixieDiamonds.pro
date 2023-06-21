@@ -12,6 +12,8 @@ DESTDIR = ../bin
 DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += KEYCODE_FROM_SFML
 
+CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
+
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
