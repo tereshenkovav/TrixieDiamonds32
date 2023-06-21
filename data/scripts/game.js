@@ -359,11 +359,11 @@ function Frame(dt) {
 
    if (game.isKeyDown(KEY_ESCAPE)) 
      {
-      if (gameover) game.goToScript("main",null) ;
+      if (gameover) game.goToScript("menu",null) ;
       ispaused=!ispaused ; return true ; 
      }     
 
-   if (game.isKeyDown(KEY_F10)&&ispaused) game.goToScript("main",null) ;
+   if (game.isKeyDown(KEY_F10)&&ispaused) game.goToScript("menu",null) ;
 
    if (ispaused) return true ;
 

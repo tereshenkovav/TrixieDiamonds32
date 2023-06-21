@@ -167,7 +167,7 @@ function Render() {
 }
 
 function Frame(dt) {
-   if (game.isKeyDown(KEY_ESCAPE)) game.goToScript("main",null) ;
+   if (game.isKeyDown(KEY_ESCAPE)) game.goToScript("menu",null) ;
 
    if (game.isKeyDown(KEY_UP))
      if (tekpage>0) tekpage-- ;

@@ -32,7 +32,7 @@ function Render() {
 
 function Frame(dt) {
    if (game.isOneOfKeysDown([KEY_ESCAPE,KEY_SPACE,KEY_ENTER]))
-     game.goToScript("main",null) ;
+     game.goToScript("menu",null) ;
 
    return true ;
 }

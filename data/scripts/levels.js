@@ -63,7 +63,7 @@ function Render() {
 }
 
 function Frame(dt) {
-   if (game.isKeyDown(KEY_ESCAPE)) game.goToScript("main",null) ;
+   if (game.isKeyDown(KEY_ESCAPE)) game.goToScript("menu",null) ;
 
    if (game.isKeyDown(KEY_DOWN)) 
      if ((teklevel<menu.length-1)&&(teklevel<nextlevel)) {
