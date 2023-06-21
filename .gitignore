@@ -4,3 +4,6 @@
 *.exe
 bin/TrixieDiamonds
 data/deflang.json
+setup/windows/*.zip
+setup/windows/*.exe
+setup/linux/*.AppImage
