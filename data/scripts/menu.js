@@ -14,8 +14,9 @@ var scenepos ;
 const MENU_ARCADE = 0 ;
 const MENU_FREEPLAY = 1 ;
 const MENU_LANG = 2 ;
-const MENU_HELP = 3 ;
-const MENU_EXIT = 4 ;
+const MENU_SOUND = 3 ;
+const MENU_HELP = 4 ;
+const MENU_EXIT = 5 ;
 
 var tekmenu = MENU_ARCADE ;
 
@@ -37,6 +38,7 @@ function loadLangResources() {
    menu.push(game.loadText("arial.ttf",strings.menuarcade,20)) ;
    menu.push(game.loadText("arial.ttf",strings.menufreeplay,20)) ;
    menu.push(game.loadText("arial.ttf",strings.menulang+": "+system.getCurrentLanguage().toUpperCase(),20)) ;
+   menu.push(game.loadText("arial.ttf",strings.menusound+": "+(system.isSoundOn()?strings.text_on:strings.text_off),20)) ;
    menu.push(game.loadText("arial.ttf",strings.menuhelp,20)) ;
    menu.push(game.loadText("arial.ttf",strings.menuexit,20)) ;
    for (var i=0; i<menu.length; i++)
@@ -78,7 +80,7 @@ function Init() {
 function Render() {
    logo.renderTo(400,100) ;
 
-   renderRects(rects_menu,250,160,300,260) ;
+   renderRects(rects_menu,250,160,300,300) ;
 
    for (var i=0; i<menu.length; i++) {
      if (tekmenu==i) selector.renderTo(300,210+i*40) ;
@@ -127,6 +129,10 @@ function Frame(dt) {
       if (tekmenu==MENU_LANG) {
         system.switchCurrentLanguage() ;
         loadLangResources() ;
+      }
+      if (tekmenu==MENU_SOUND) { 
+        system.setSoundOn(!system.isSoundOn()) ;
+        menu[MENU_SOUND].setText(strings.menusound+": "+(system.isSoundOn()?strings.text_on:strings.text_off)) ;
       }
       if (tekmenu==MENU_HELP) game.goToScript("help",null) ;
       if (tekmenu==MENU_EXIT) return false ;
