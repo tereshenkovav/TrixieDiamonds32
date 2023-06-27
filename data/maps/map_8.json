@@ -1,0 +1,19 @@
+{
+  "MaxBonus":19,
+  "MaxSpawnBonus":20,
+  "MonsterSpawnIntervalMS":3500,
+  "BonusSpawnIntervalMS":2000,
+  "InitialMonsters":2,
+  "MaxSpawnMonsters":9999,
+  "InitialBonuses":1,
+  "StartX":400,
+  "StartY":2,
+  "ExtraBonuses":
+   [
+      {
+        "x":400, 
+        "y":4,
+        "type":"heart"
+      }
+   ]
+}

@@ -1,7 +1,7 @@
 {
   "MaxBonus":17,
   "MaxSpawnBonus":20,
-  "MonsterSpawnIntervalMS":3000,
+  "MonsterSpawnIntervalMS":4000,
   "BonusSpawnIntervalMS":3000,
   "InitialMonsters":8,
   "MaxSpawnMonsters":9999,
