@@ -92,6 +92,30 @@ void MapViewer::render()
                 renderSprite(gnd_stone,LEFT+blockw*i,TOP+j*blockh+blockh) ;
             }
         }
+
+    if (false) { // Отладочный код вывода зон спавна
+        sf::VertexArray line;
+        line.setPrimitiveType(sf::Lines) ;
+        line.resize(6);
+        line[0].color = sf::Color::White;
+        line[1].color = sf::Color::White;
+        line[2].color = sf::Color::White;
+        line[3].color = sf::Color::White;
+        line[4].color = sf::Color::White;
+        line[5].color = sf::Color::White;
+
+        foreach (auto sp, spawns) {
+            line[0].position = sf::Vector2f(sp.x-sp.wleft,TOP+sp.y*blockh+blockh-10);
+            line[1].position = sf::Vector2f(sp.x-sp.wleft,TOP+sp.y*blockh+blockh);
+            line[2].position = sf::Vector2f(sp.x+sp.wright,TOP+sp.y*blockh+blockh);
+            line[3].position = sf::Vector2f(sp.x+sp.wright,TOP+sp.y*blockh+blockh-10);
+            line[4].position = sf::Vector2f(sp.x-sp.wleft,TOP+sp.y*blockh+blockh);
+            line[5].position = sf::Vector2f(sp.x+sp.wright,TOP+sp.y*blockh+blockh);
+
+            target->draw(line) ;
+        }
+    }
+
 }
 
 void MapViewer::loadMapFromFile(const QString &mapfile)
@@ -115,9 +139,18 @@ void MapViewer::loadMapFromFile(const QString &mapfile)
         for (int j=0; j<map.getHeight(); j++) {
             bool z = true ;
             if (map.getTerr(i,j)==Terrain::Wall) z=false ;
-            if (j<map.getWidth()-1)
+            if (j<map.getHeight()-2)
                 if (map.getTerr(i,j+1)==Terrain::Sky) z=false ;
-            if (z) spawns.append(QPoint(LEFT+blockw*i+blockw/2,j)) ;
+            if (z) {
+                SpawnPoint sp ;
+                sp.x = LEFT+blockw*i+blockw/2 ;
+                sp.y = j ;
+                sp.wleft = blockw/2 ;
+                if (!map.isMatAtLeft(i,j)) sp.wleft+=edgew ;
+                sp.wright = blockw/2 ;
+                if (!map.isMatAtRight(i,j)) sp.wright+=edgew ;
+                spawns.append(sp) ;
+            }
         }
 }
 
@@ -143,11 +176,11 @@ bool MapViewer::isNeedStop(double x1, double x2, int platei, double w2, bool isf
         for (int i=0; i<map.getWidth(); i++) {
             if (x2>x1) {
                 if (!map.isMatAtRight(i,platei+1))
-                    if ((x1<=LEFT+blockw*(i+1))&&(x2>=LEFT+blockw*(i+1))) return true ;
+                    if ((x1+w2<=LEFT+blockw*(i+1)+edgew)&&(x2+w2>=LEFT+blockw*(i+1)+edgew)) return true ;
             }
             else {
                 if (!map.isMatAtLeft(i,platei+1))
-                    if ((x2<=LEFT+blockw*(i))&&(x1>=LEFT+blockw*(i))) return true ;
+                    if ((x2-w2<=LEFT+blockw*(i)-edgew)&&(x1-w2>=LEFT+blockw*(i)-edgew)) return true ;
             }
         }
 
@@ -170,15 +203,18 @@ bool MapViewer::isNeedStop(double x1, double x2, int platei, double w2, bool isf
     return false ;
 }
 
-bool MapViewer::canJumpTo(double x, int targetplatei)
+bool MapViewer::canJumpTo(double x, int targetplatei, int playerw)
 {    
     if (targetplatei<0) return false ;
     if (targetplatei>=map.getHeight()) return false ;
-    bool isvalidplace = false ;
+    bool leftin = false ;
+    bool rightin = false ;
     foreach (auto sp, spawns)
-        if (sp.y()==targetplatei)
-            if (abs(sp.x()-x)<blockw/2) isvalidplace=true ;
-    return isvalidplace ;
+        if (sp.y==targetplatei) {
+            if ((sp.x-sp.wleft < x-playerw/2) && (sp.x+sp.wright > x-playerw/2)) leftin=true ;
+            if ((sp.x-sp.wleft < x+playerw/2) && (sp.x+sp.wright > x+playerw/2)) rightin=true ;
+        }
+    return leftin && rightin ;
 }
 
 QScriptValue MapViewer::genSpawnPoint(double playerx, int playerplatei)
@@ -186,9 +222,9 @@ QScriptValue MapViewer::genSpawnPoint(double playerx, int playerplatei)
     QScriptValue res = engine->newObject() ;
     while (true) {
         int idx = QRandomGenerator::system()->bounded(spawns.count()) ;
-        if (!((playerplatei==spawns[idx].y())&&(abs(spawns[idx].x()-playerx)<2*blockw))) {
-            res.setProperty("x",spawns[idx].x());
-            res.setProperty("y",spawns[idx].y());
+        if (!((playerplatei==spawns[idx].y)&&(abs(spawns[idx].x-playerx)<2*blockw))) {
+            res.setProperty("x",spawns[idx].x);
+            res.setProperty("y",spawns[idx].y);
             return res ;
         }
     }

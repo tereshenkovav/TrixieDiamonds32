@@ -1,6 +1,7 @@
 var trixie_wait ;
 var trixie_walk ;
 var trixie_win ;
+var trixie_width ;
 var text_win ;
 var text_fail ;
 var text_back ;
@@ -138,6 +139,7 @@ function Init(args) {
          
    trixie_wait = game.loadSpritePCX8bit('trx_wait.pcx',true) ;
    trixie_wait.setSmooth(false) ;
+   trixie_width = trixie_wait.getWidth() ;
 
    trixie_win = game.loadSpritePCX8bit('win.pcx',true) ;
    trixie_win.setSmooth(false) ;
@@ -418,7 +420,7 @@ function Frame(dt) {
      }
      else
      if ((teleport_left<=0)&& 
-         (mapviewer.canJumpTo(playerx,targety)))
+         (mapviewer.canJumpTo(playerx,targety,trixie_width)))
             playery=targety ;
    }
 
@@ -483,7 +485,7 @@ function Frame(dt) {
        }
 
    var newplayerx = playerx+playervx*dt ;  
-   if (mapviewer.isNeedStop(playerx,newplayerx,playery,trixie_walk.getWidth()/2,false))
+   if (mapviewer.isNeedStop(playerx,newplayerx,playery,trixie_width/2,false))
      playervx=0 ;
    else 
      playerx=newplayerx ;

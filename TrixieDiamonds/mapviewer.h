@@ -8,6 +8,13 @@
 #include <QtScript/QScriptEngine>
 #include <QPoint>
 
+struct SpawnPoint {
+    int x ;
+    int y ;
+    int wleft ;
+    int wright ;
+};
+
 class MapViewer : public QObject
 {
     Q_OBJECT
@@ -32,7 +39,7 @@ private:
     int caveh ;
     QMap<QChar,Terrain> terrdict ;
     QScriptEngine * engine ;
-    QList<QPoint> spawns ;
+    QList<SpawnPoint> spawns ;
 
     const int LEFT=0 ;
     const int TOP=40 ;
@@ -50,7 +57,7 @@ public slots:
     int getPlateCount() ;
     int getPlateY(int i) ;
     bool isNeedStop(double x1, double x2, int platei, double w2, bool isfly) ;
-    bool canJumpTo(double x, int targetplatei) ;
+    bool canJumpTo(double x, int targetplatei, int playerw) ;
     QScriptValue genSpawnPoint(double playerx, int playerplatei) ;
 };
 
