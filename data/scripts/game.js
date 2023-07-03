@@ -440,23 +440,35 @@ function Frame(dt) {
      while (i<bonus.length) {
        if ((bonus[i].y==playery)&&
            (Math.abs(bonus[i].x-playerx)<(spr_bonus.getWidth()+trixie_walk.getWidth())/2)) {
+         var grab = false ;
          if (bonus[i].type=="diamond") {
            bonuscount++ ;
+           grab=true ;
            if ((bonuscount>=mapparam.MaxBonus)&&(tekmode=="arcade")) goEndGame(true) ;
          }
          if (bonus[i].type=="heart") {
-           if (health<balance.MaxHealth) health++ ;
+           if (health<balance.MaxHealth) { 
+             health++ ; 
+             grab=true ; 
+           }
          }
          if (bonus[i].type=="mana") {
-           manacount+=balance.ManaBonusInc ;
-           if (manacount>balance.MaxMana) manacount=balance.MaxMana ;
+           if (manacount<balance.MaxMana) {
+             manacount+=balance.ManaBonusInc ;
+             if (manacount>balance.MaxMana) manacount=balance.MaxMana ;
+             grab=true ;
+           }
          }
-         bonus.splice(i,1) ;
-         snd_bonusget.play() ;
+         if (grab) {
+           bonus.splice(i,1) ;
+           snd_bonusget.play() ;
+         }
+         else
+           i++ ;
        }
        else
         i++ ;
-     }   
+     }
    }
 
    for (var i=0; i<monsters.length; i++) {
