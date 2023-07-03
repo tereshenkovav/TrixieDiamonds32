@@ -38,7 +38,7 @@ function Render() {
    intro.setAlpha(stage) ;
    intro.renderTo(400,300) ;
 
-   if (stage>=255) text.printTo(560,550) ;
+   if (stage>=255) text.printTo(600,550) ;
 
    return true ;
 }
