@@ -30,6 +30,10 @@ void Map::setTerr(int i, int j, Terrain t)
 
 Terrain Map::getTerr(int i, int j) const
 {
+    if (i<0) return Sky ;
+    if (i>=w) return Sky ;
+    if (j<0) return Sky ;
+    if (j>=h) return Sky ;
     return map[i][j] ;
 }
 

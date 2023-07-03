@@ -185,7 +185,7 @@ bool MapViewer::isNeedStop(double x1, double x2, int platei, double w2, bool isf
         }
 
     // В стену уперлись
-    for (int i=1; i<map.getWidth(); i++) {
+    for (int i=0; i<map.getWidth(); i++) {
         if (x2>x1) {
             if ((x1+w2<=LEFT+blockw*(i))&&(x2+w2>=LEFT+blockw*(i))) {
                 if (map.getTerr(i,platei)==Terrain::Wall) return true ;
