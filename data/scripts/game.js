@@ -387,8 +387,7 @@ function Frame(dt) {
        if (manacount>=balance.JumpManaCost) {
          teleport.playOneTime() ;
          teleport_left=TELEPORT_HALFTIME ;
-         targety = playery+dy ;
-         manacount-=balance.JumpManaCost ;
+         targety = playery+dy ;         
          snd_teleport.play() ;
        }
      } 
@@ -420,8 +419,10 @@ function Frame(dt) {
      }
      else
      if ((teleport_left<=0)&& 
-         (mapviewer.canJumpTo(playerx,targety,trixie_width)))
+         (mapviewer.canJumpTo(playerx,targety,trixie_width))) {
             playery=targety ;
+            manacount-=balance.JumpManaCost ;
+         }
    }
 
    if (isfired) {
