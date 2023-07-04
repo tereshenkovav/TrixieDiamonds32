@@ -222,7 +222,7 @@ QScriptValue MapViewer::genSpawnPoint(double playerx, int playerplatei)
     QScriptValue res = engine->newObject() ;
     while (true) {
         int idx = QRandomGenerator::system()->bounded(spawns.count()) ;
-        if (!((playerplatei==spawns[idx].y)&&(abs(spawns[idx].x-playerx)<2*blockw))) {
+        if (!((playerplatei==spawns[idx].y)&&(abs(spawns[idx].x-playerx)<3*blockw))) {
             res.setProperty("x",spawns[idx].x);
             res.setProperty("y",spawns[idx].y);
             return res ;
