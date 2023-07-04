@@ -110,7 +110,6 @@ function Render() {
 }
 
 function Frame(dt) {
-   if (game.isKeyDown(KEY_ESCAPE)) return false ;
 
    if (game.isKeyDown(KEY_DOWN)) 
      if (tekmenu<menu.length-1) {
