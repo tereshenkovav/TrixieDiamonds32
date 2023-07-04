@@ -382,7 +382,7 @@ function Frame(dt) {
      }
 
    if ((teleport_left<=0)&&(!gameover)) {
-     if (game.isOneOfKeysDown([KEY_UP,KEY_DOWN])&&(hittime<=0)) {
+     if (game.isOneOfKeysDown([KEY_UP,KEY_DOWN])) {
        var dy = game.isKeyDown(KEY_DOWN)?1:-1 ;
        if (manacount>=balance.JumpManaCost) {
          teleport.playOneTime() ;
@@ -401,7 +401,7 @@ function Frame(dt) {
        trixie_wait.mirrorHorz(dx!=1) ;
        trixie_walk.mirrorHorz(dx!=1) ;
      } 
-     if (game.isKeyDown(KEY_CONTROL)&&(hittime<=0)) 
+     if (game.isKeyDown(KEY_CONTROL)) 
        if ((!isfired)&&(manacount>=balance.FireballManaCost)) { 
          firevx=balance.FireballV*lastplayervsig ;
          fireball.mirrorHorz(lastplayervsig<0) ;
@@ -436,7 +436,7 @@ function Frame(dt) {
      }   
    }
 
-   if ((hittime<=0)&&(!gameover)) {
+   if (!gameover) {
      var i=0 ;
      while (i<bonus.length) {
        if ((bonus[i].y==playery)&&
