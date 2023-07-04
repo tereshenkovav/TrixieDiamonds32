@@ -28,10 +28,6 @@ var playerx ;
 var playervx ;
 var lastplayervsig ;
 var targety ;
-var firex ;
-var firey ;
-var firevx ;
-var isfired ;
 var teleport_left=-1 ;
 var manacount ;
 var bonuscount ;
@@ -53,6 +49,7 @@ var monstertypes = new Array() ;
 var bonus = new Array() ;
 var cloudspr = new Array() ;
 var clouds = new Array() ;
+var fire = new Array() ;
 var ispaused ;
 
 const TELEPORT_HALFTIME=0.45 ;
@@ -193,7 +190,6 @@ function Init(args) {
    playervx=0 ;
    lastplayervsig=1 ; // Чтобы работал fireball по умолчанию
 
-   isfired=false ;
    manacount = balance.MaxMana ;
    health = balance.MaxHealth ;
    bonuscount = 0 ;
@@ -306,8 +302,10 @@ function Render() {
          1.5*spr_mana.getHeight()-bonus[i].dy) ;
    }
 
-   if (isfired)
-     fireball.renderTo(firex,mapviewer.getPlateY(firey)-fireball.getHeight()) ;
+   for (var i=0; i<fire.length; i++) {
+     fireball.mirrorHorz(fire[i].vx<0) ;
+     fireball.renderTo(fire[i].x,mapviewer.getPlateY(fire[i].y)-fireball.getHeight()) ;
+   }
 
    if (teleport.isPlayed()) teleport.renderTo(playerx,mapviewer.getPlateY(playery)-trixie_walk.getWidth()/2-5) ;
 
@@ -402,12 +400,9 @@ function Frame(dt) {
        trixie_walk.mirrorHorz(dx!=1) ;
      } 
      if (game.isKeyDown(KEY_CONTROL)) 
-       if ((!isfired)&&(manacount>=balance.FireballManaCost)) { 
-         firevx=balance.FireballV*lastplayervsig ;
-         fireball.mirrorHorz(lastplayervsig<0) ;
-         firex = playerx ;
-         firey = playery ;
-         isfired=true ;       
+       if (manacount>=balance.FireballManaCost) { 
+         fire.push({ x: playerx, y: playery,
+                     vx: balance.FireballV*lastplayervsig }) ;
          manacount-=balance.FireballManaCost ;
          snd_fireball.play() ;
        }
@@ -425,11 +420,11 @@ function Frame(dt) {
          }
    }
 
-   if (isfired) {
+   for (var j=0; j<fire.length; j++) {
      var i=0 ;
      while (i<monsters.length) {
-       if ((monsters[i].y==firey)&&
-           (Math.abs(monsters[i].x-firex)<(monsters[i].width+fireball.getWidth())/2))
+       if ((monsters[i].y==fire[j].y)&&
+           (Math.abs(monsters[i].x-fire[j].x)<(monsters[i].width+fireball.getWidth())/2))
          monsters.splice(i,1) ;
        else
         i++ ;
@@ -503,11 +498,16 @@ function Frame(dt) {
    else 
      playerx=newplayerx ;
 
-   var newfirex = firex+firevx*dt ;  
-   if (mapviewer.isNeedStop(firex,newfirex,firey,fireball.getWidth()/2,true)) 
-     isfired=false ;
-   else 
-     firex=newfirex ;
+   var i=0 ;
+   while (i<fire.length) {
+     var newfirex = fire[i].x+fire[i].vx*dt ;  
+     if (mapviewer.isNeedStop(fire[i].x,newfirex,fire[i].y,fireball.getWidth()/2,true)) 
+       fire.splice(i,1) ;
+     else {
+       fire[i].x=newfirex ;
+       i++ ;
+     }
+   }
 
    if (hittime>0) hittime-=dt ;
 
