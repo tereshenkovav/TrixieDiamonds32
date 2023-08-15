@@ -26,7 +26,7 @@ function Init() {
    game.setBackgroundColor(0,0,0) ;
 
    stage = 0 ;
-   intro = game.loadSpritePCX8bit('intro.pcx',true) ;
+   intro = game.loadSpritePCX8bit('intro.pcx') ;
    intro.setSmooth(false) ;
    intro.setScaleX(250) ;
    intro.setScaleY(300) ;
