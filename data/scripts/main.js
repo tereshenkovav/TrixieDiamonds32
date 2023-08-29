@@ -23,6 +23,9 @@ function Init() {
 
    loadLangResources() ;
 
+   system.setDifficultCount(3) ;
+   system.setDifficult(1) ;
+
    game.setBackgroundColor(0,0,0) ;
 
    stage = 0 ;

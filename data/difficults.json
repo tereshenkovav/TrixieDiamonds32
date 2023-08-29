@@ -1,0 +1,12 @@
+[
+{
+  "MaxMana":10,
+  "MaxHealth":4
+},
+{
+},
+{
+  "ManaUpIntervalMS":7000,
+  "MonsterSpawnMultK":0.25
+}
+]

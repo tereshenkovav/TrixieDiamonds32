@@ -120,7 +120,14 @@ function goEndGame(win) {
 function Init(args) {
    strings = system.loadObject("strings.json") ;
    balance = system.loadObject("common_balance.json") ;
-
+   var diff_balance = system.loadObject("difficults.json")[system.getDifficult()] ;
+   if (diff_balance.MaxMana!=undefined)
+      balance.MaxMana = diff_balance.MaxMana ;
+   if (diff_balance.MaxHealth!=undefined)
+      balance.MaxHealth = diff_balance.MaxHealth ;
+   if (diff_balance.ManaUpIntervalMS!=undefined)
+      balance.ManaUpIntervalMS = diff_balance.ManaUpIntervalMS ;
+   
    teklevel = args.level ;
    tekmode = args.mode ;
 
@@ -128,6 +135,9 @@ function Init(args) {
 
    mapviewer.loadMapFromFile("maps/map_"+teklevel+".dat") ;
    mapparam = system.loadObject("maps/map_"+teklevel+".json") ;
+
+   if (diff_balance.MonsterSpawnMultK!=undefined)
+      mapparam.MonsterSpawnIntervalMS*=(1.0-diff_balance.MonsterSpawnMultK) ;
 
    for (var i=0; i<mapparam.ExtraBonuses.length; i++) 
      bonus.push({ x: mapparam.ExtraBonuses[i].x, 
