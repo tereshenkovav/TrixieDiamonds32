@@ -75,6 +75,7 @@ function upMana() {
 function spawnMonster() {
   if (ispaused) return ;
   if (gameover) return ;
+  if (teleport_left>0) return ; // «апрет на спавн монстров при телепортации пони
 
   if ((leftspawnmonsters<=0)&&(tekmode=="arcade")) return ;
   leftspawnmonsters-- ;
