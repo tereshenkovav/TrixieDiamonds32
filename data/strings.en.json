@@ -7,6 +7,7 @@
   "menufreeplay":"Free scenario",
   "menudiff":"Difficulty",
   "menuhelp":"Help",
+  "menuabout":"About",
   "menusound":"Sound",
   "menulang":"Language",
   "menuexit":"Exit",
@@ -36,5 +37,9 @@
   "help4_1":"ACTIONS",
   "help4_2":"Trixie can walk, attack, and teleport between upper\nand lower platforms.\nTeleportation consumes 1 point of mana.\nFireball toss consumes 3 points of mana.\nThe mana pool restores by the time and is shown as\nbottles:",
   "help5_1":"CONTROLES",
-  "help5_2":"Left / Right arrow - walk\nSpace - stop\nUp / Down arrow - teleportation\nCtrl - toss a fireball\nEscape - pause"
+  "help5_2":"Left / Right arrow - walk\nSpace - stop\nUp / Down arrow - teleportation\nCtrl - toss a fireball\nEscape - pause",
+  "about_title":"Trixie and diamonds game",
+  "about_version":"v1.2.0",
+  "about_info":"  An arcade game about Trixie and collecting diamonds. Developed\nwith C++/QtScript/SFML. Author - Aleksandr V. Tereshenkov.\nHome pages: tav-developer.itch.io and github.com/tereshenkovav",
+  "about_credits":"Credits"
 }

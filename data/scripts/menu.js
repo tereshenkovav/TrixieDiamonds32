@@ -17,7 +17,8 @@ const MENU_DIFFICULT = 2 ;
 const MENU_LANG = 3 ;
 const MENU_SOUND = 4 ;
 const MENU_HELP = 5 ;
-const MENU_EXIT = 6 ;
+const MENU_ABOUT = 6 ;
+const MENU_EXIT = 7 ;
 
 var tekmenu = MENU_ARCADE ;
 
@@ -49,6 +50,7 @@ function loadLangResources() {
    menu.push(game.loadText("arial.ttf",strings.menulang+": "+system.getCurrentLanguage().toUpperCase(),20)) ;
    menu.push(game.loadText("arial.ttf",strings.menusound+": "+(system.isSoundOn()?strings.text_on:strings.text_off),20)) ;
    menu.push(game.loadText("arial.ttf",strings.menuhelp,20)) ;
+   menu.push(game.loadText("arial.ttf",strings.menuabout,20)) ;
    menu.push(game.loadText("arial.ttf",strings.menuexit,20)) ;
    for (var i=0; i<menu.length; i++)
      menu[i].setColor(200,200,200) ;
@@ -89,13 +91,13 @@ function Init() {
 function Render() {
    logo.renderTo(400,100) ;
 
-   renderRects(rects_menu,250,160,320,320) ;
+   renderRects(rects_menu,250,160,320,330) ;
 
    for (var i=0; i<menu.length; i++) {
-     if (tekmenu==i) selector.renderTo(300,210+i*36) ;
-     menu[i].printTo(340,200+i*36) ;
+     if (tekmenu==i) selector.renderTo(300,210+i*32) ;
+     menu[i].printTo(340,200+i*32) ;
    }
-   langico.renderTo(340+menu[MENU_LANG].getTextWidth()+30,200+MENU_LANG*36+12) ;
+   langico.renderTo(340+menu[MENU_LANG].getTextWidth()+30,200+MENU_LANG*32+12) ;
 
    if (scenestage==0) {
      trixie_walk.mirrorHorz(false) ;
@@ -147,6 +149,7 @@ function Frame(dt) {
         menu[MENU_SOUND].setText(strings.menusound+": "+(system.isSoundOn()?strings.text_on:strings.text_off)) ;
       }
       if (tekmenu==MENU_HELP) game.goToScript("help",null) ;
+      if (tekmenu==MENU_ABOUT) game.goToScript("about",null) ;
       if (tekmenu==MENU_EXIT) return false ;
    }
 
