@@ -7,5 +7,7 @@
   "ProtectAfterHitMS":2000,
   "ManaUpIntervalMS":5000,
   "JumpManaCost":1,
-  "FireballManaCost":3
+  "FireballManaCost":3,
+  "ShieldManaCost":2,
+  "ProtectShieldMS":3000
 }

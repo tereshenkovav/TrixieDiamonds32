@@ -51,6 +51,8 @@ var cloudspr = new Array() ;
 var clouds = new Array() ;
 var fire = new Array() ;
 var ispaused ;
+var shield ;
+var shield_time ;
 
 const TELEPORT_HALFTIME=0.45 ;
 const SKY_SECTIONS=32;
@@ -155,6 +157,10 @@ function Init(args) {
    trixie_walk.play() ;
    trixie_walk.setSmooth(false) ;
 
+   shield = game.loadAnimation('shield.png',60,60,28,14,true) ;
+   shield.play() ;
+   shield.setSmooth(false) ;
+
    fireball = game.loadAnimationPCX8bit('fireball.pcx',5,9,true) ;
    fireball.play() ;
    fireball.setSmooth(false) ;
@@ -206,6 +212,7 @@ function Init(args) {
    leftspawnbonus = mapparam.MaxSpawnBonus ;
    leftspawnmonsters = mapparam.MaxSpawnMonsters ;
    hittime=-1 ;
+   shield_time=-1 ;
    gameover=false ;
    ispaused=false ;
 
@@ -292,6 +299,9 @@ function Render() {
    if ((hittime<=0)||(Math.floor(4*hittime) % 2 == 0))
      ((playervx!=0)?trixie_walk:trixie_wait).renderTo
        (playerx,mapviewer.getPlateY(playery)-trixie_walk.getHeight()/2-5) ;
+
+   if ((shield_time>0)&&(!gameover))
+     shield.renderTo(playerx,mapviewer.getPlateY(playery)-trixie_walk.getHeight()/2-5) ;
 
    for (var i=0; i<monsters.length; i++) {
      var spr = monsterspr[monsters[i].mtype] ;
@@ -416,6 +426,12 @@ function Frame(dt) {
          manacount-=balance.FireballManaCost ;
          snd_fireball.play() ;
        }
+     if (game.isKeyDown(KEY_ALT)) 
+       if ((manacount>=balance.ShieldManaCost)&&(shield_time<=0)) { 
+         shield_time=balance.ProtectShieldMS/1000.0 ;
+         manacount-=balance.ShieldManaCost ;
+         snd_fireball.play() ;
+       }
    }
 
    if (teleport_left>0) {
@@ -488,7 +504,7 @@ function Frame(dt) {
        monsters[i].x=newmonsterx ;
    }
 
-   if ((hittime<=0)&&(!gameover))
+   if ((hittime<=0)&&(!gameover)&&(shield_time<=0))
      for (var i=0; i<monsters.length; i++) 
        if ((monsters[i].y==playery)&&
            (Math.abs(monsters[i].x-playerx)<(monsters[i].width+trixie_walk.getWidth())/2)) {
@@ -520,6 +536,8 @@ function Frame(dt) {
    }
 
    if (hittime>0) hittime-=dt ;
+ 
+   if (shield_time>0) shield_time-=dt ;
 
    for (var i=0; i<clouds.length; i++)
       clouds[i].x+=clouds[i].vx*dt ;
