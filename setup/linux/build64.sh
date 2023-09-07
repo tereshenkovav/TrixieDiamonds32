@@ -36,7 +36,7 @@ cp -r ../../data $appdir/usr
 export ARCH=x86_64
 
 echo "\"en\"" > $appdir/usr/data/deflang.json
-appimagetool-x86_64.AppImage $appdir /tmp/TrixieDiamonds32-EN-1.1.0-x86_64.AppImage
+appimagetool-x86_64.AppImage $appdir /tmp/TrixieDiamonds32-EN-1.2.0-x86_64.AppImage
 
 echo "\"ru\"" > $appdir/usr/data/deflang.json
-appimagetool-x86_64.AppImage $appdir /tmp/TrixieDiamonds32-RU-1.1.0-x86_64.AppImage
+appimagetool-x86_64.AppImage $appdir /tmp/TrixieDiamonds32-RU-1.2.0-x86_64.AppImage
