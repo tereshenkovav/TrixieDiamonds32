@@ -71,6 +71,7 @@ int main(int argc, char *argv[])
                 window.close() ;
                 break ;
             }
+
             if (event.type == sf::Event::KeyPressed)
                 game->setKey(event.key.code) ;
             if (event.type == sf::Event::MouseButtonPressed) {
@@ -81,11 +82,11 @@ int main(int argc, char *argv[])
 
         game->setMousePos(sf::Mouse::getPosition(window).x,sf::Mouse::getPosition(window).y) ;
 
+        if (window.hasFocus()) {
         if (!game->Frame(dt)) {
             window.close() ;
             break ;
         }
-
         if (game->isNewScript()) {
             QString script = game->getNewScript() ;            
             QString args  = QGameSystem::ScriptValue2String(game->getNewScriptArgs()) ;
@@ -95,6 +96,7 @@ int main(int argc, char *argv[])
             if (!game->Init(args)) return 1 ;
             // Убираем слишком большую дельту, вызванную инициализацией новой игры
             lasttime = clock.getElapsedTime().asSeconds() ;
+        }
         }
 
         window.clear();
