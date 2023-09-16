@@ -17,6 +17,8 @@
   "textback":"Escape - main menu",
   "textnext":"Space - continue",
   "textfinpause":"Escape - continue\nF10 - main menu",
+  "textcloseconfirm":"Quit the game?",
+  "textcloseconfirmbuts":"Escape - back\nF10 - quit",
   "textrestart":"Space - restart",
   "textfinal":"Congratulations! You have finished\nthe scenario!",
   "text_hard":"High",

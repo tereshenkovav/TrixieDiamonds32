@@ -57,6 +57,8 @@ int main(int argc, char *argv[])
     sf::Clock clock ;
     float lasttime = clock.getElapsedTime().asSeconds() ;
 
+    bool closehandled = false ;
+    Game * prevgame = nullptr ;
     while (window.isOpen())
     {
         a.processEvents() ;
@@ -65,11 +67,16 @@ int main(int argc, char *argv[])
         float dt = newtime-lasttime ;
         lasttime = newtime ;
 
+        closehandled = false ;
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
-                window.close() ;
-                break ;
+                if (game->sys->getCloseHandlerScript().length()==0) {
+                    window.close() ;
+                    break ;
+                }
+                else
+                    closehandled = true ;
             }
 
             if (event.type == sf::Event::KeyPressed)
@@ -88,12 +95,26 @@ int main(int argc, char *argv[])
             break ;
         }
         if (game->isNewScript()) {
-            QString script = game->getNewScript() ;            
-            QString args  = QGameSystem::ScriptValue2String(game->getNewScriptArgs()) ;
-            game->UnInit() ;
-            delete game ;
-            game = createGame(game->getNewScript(),mapviewer,extproc) ;
-            if (!game->Init(args)) return 1 ;
+            if (prevgame!=nullptr) {
+                game = prevgame ;
+                prevgame = nullptr ;
+            }
+            else {
+                QString script = game->getNewScript() ;
+                QString args  = QGameSystem::ScriptValue2String(game->getNewScriptArgs()) ;
+                game->UnInit() ;
+                delete game ;
+                game = createGame(script,mapviewer,extproc) ;
+                if (!game->Init(args)) return 1 ;
+            }
+            // Убираем слишком большую дельту, вызванную инициализацией новой игры
+            lasttime = clock.getElapsedTime().asSeconds() ;
+        }
+        if ((closehandled)&&(prevgame==nullptr)) {
+            QString script = game->sys->getCloseHandlerScript() ;
+            prevgame = game ;
+            game = createGame(script,mapviewer,extproc) ;
+            if (!game->Init("null")) return 1 ;
             // Убираем слишком большую дельту, вызванную инициализацией новой игры
             lasttime = clock.getElapsedTime().asSeconds() ;
         }

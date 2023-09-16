@@ -17,6 +17,8 @@
   "textback":"Escape - назад в меню",
   "textnext":"Пробел - далее",
   "textfinpause":"Escape - продолжить\nF10 - в меню",
+  "textcloseconfirm":"Выйти из игры?",
+  "textcloseconfirmbuts":"Escape - назад\nF10 - выйти",
   "textrestart":"Пробел - заново",
   "textfinal":"Поздравляем! Вы прошли всю аркаду.",
   "text_hard":"Высокая",

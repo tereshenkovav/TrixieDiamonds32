@@ -23,6 +23,8 @@ function Init() {
 
    loadLangResources() ;
 
+   system.setCloseHandlerScript("closehandler") ;
+
    system.setDifficultCount(3) ;
    system.setDifficult(1) ;
 
