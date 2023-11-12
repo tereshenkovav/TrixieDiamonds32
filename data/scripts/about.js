@@ -32,8 +32,9 @@ function Init() {
 
    credits_str = "" ;
    var credits = system.loadObject("credits.json") ;
-   for (var i=0; i<credits.length; i++)
-     credits_str+=(credits[i]+"\n") ;
+   if (credits!=null)
+     for (var i=0; i<credits.length; i++)
+       credits_str+=(credits[i]+"\n") ;
 
    return true ;
 }
