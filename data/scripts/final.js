@@ -10,7 +10,10 @@ function Init() {
    strings = system.loadObject("strings.json") ;  
    game.setBackgroundColor(0,0,0) ;
 
-   logo = game.loadSprite('final.png') ;
+   logo = game.loadAnimationPCX8bit('final.pcx',34,9,true) ;
+   logo.setScale(200,200) ;
+   logo.play() ;
+   logo.setSmooth(false) ;
 
    text_final = game.loadText("arial.ttf",strings.textfinal,28) ;
    text_final.setColor(200,200,200) ;

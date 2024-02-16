@@ -158,8 +158,9 @@ function Init(args) {
    trixie_walk.play() ;
    trixie_walk.setSmooth(false) ;
 
-   shield = game.loadAnimation('shield.png',60,60,28,14,true) ;
+   shield = game.loadAnimationPCX8bit('shield.pcx',48,48,4,9,true) ;
    shield.play() ;
+   shield.setScale(120,120) ;
    shield.setSmooth(false) ;
 
    fireball = game.loadAnimationPCX8bit('fireball.pcx',5,9,true) ;
