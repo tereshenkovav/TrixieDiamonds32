@@ -16,9 +16,10 @@ const MENU_FREEPLAY = 1 ;
 const MENU_DIFFICULT = 2 ;
 const MENU_LANG = 3 ;
 const MENU_SOUND = 4 ;
-const MENU_HELP = 5 ;
-const MENU_ABOUT = 6 ;
-const MENU_EXIT = 7 ;
+const MENU_FULLSCREEN = 5 ;
+const MENU_HELP = 6 ;
+const MENU_ABOUT = 7 ;
+const MENU_EXIT = 8 ;
 
 var tekmenu = MENU_ARCADE ;
 
@@ -49,6 +50,7 @@ function loadLangResources() {
    menu.push(game.loadText("arial.ttf",strings.menudiff+": "+getDiffucultText(system.getDifficult()),20)) ;
    menu.push(game.loadText("arial.ttf",strings.menulang+": "+system.getCurrentLanguage().toUpperCase(),20)) ;
    menu.push(game.loadText("arial.ttf",strings.menusound+": "+(system.isSoundOn()?strings.text_on:strings.text_off),20)) ;
+   menu.push(game.loadText("arial.ttf",strings.menufullscreen+": "+(system.isFullScreen()?strings.text_on:strings.text_off),20)) ;
    menu.push(game.loadText("arial.ttf",strings.menuhelp,20)) ;
    menu.push(game.loadText("arial.ttf",strings.menuabout,20)) ;
    menu.push(game.loadText("arial.ttf",strings.menuexit,20)) ;
@@ -91,13 +93,13 @@ function Init() {
 function Render() {
    logo.renderTo(400,100) ;
 
-   renderRects(rects_menu,250,160,320,330) ;
+   renderRects(rects_menu,250,150,320,340) ;
 
    for (var i=0; i<menu.length; i++) {
-     if (tekmenu==i) selector.renderTo(300,210+i*32) ;
-     menu[i].printTo(340,200+i*32) ;
+     if (tekmenu==i) selector.renderTo(300,190+i*32) ;
+     menu[i].printTo(340,180+i*32) ;
    }
-   langico.renderTo(340+menu[MENU_LANG].getTextWidth()+30,200+MENU_LANG*32+12) ;
+   langico.renderTo(340+menu[MENU_LANG].getTextWidth()+30,180+MENU_LANG*32+12) ;
 
    if (scenestage==0) {
      trixie_walk.mirrorHorz(false) ;
@@ -147,6 +149,9 @@ function Frame(dt) {
       if (tekmenu==MENU_SOUND) { 
         system.setSoundOn(!system.isSoundOn()) ;
         menu[MENU_SOUND].setText(strings.menusound+": "+(system.isSoundOn()?strings.text_on:strings.text_off)) ;
+      }
+      if (tekmenu==MENU_FULLSCREEN) { 
+        system.switchFullScreen() ;
       }
       if (tekmenu==MENU_HELP) game.goToScript("help",null) ;
       if (tekmenu==MENU_ABOUT) game.goToScript("about",null) ;
