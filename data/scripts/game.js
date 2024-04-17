@@ -60,6 +60,7 @@ const SKY_SECTIONS=32;
 $include<rects.inc>
 $include<consts.inc>
 $include<funcs.inc>
+$include<profile.inc>
 
 function getRandomInt(min, max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -111,12 +112,9 @@ function goEndGame(win) {
    gameover=true ; 
    iswin=win ;
    if (win) {
-     var profile = system.loadObjectFromAppData("profile.json") ;
-     if (profile==null) 
-       profile = { nextlevel : teklevel+1 } ;
-     else 
-       if (profile.nextlevel<teklevel+1) profile.nextlevel=teklevel+1 ;
-     system.saveObjectToAppData("profile.json",profile) ;
+     var profile = loadProfile() ;
+     if (profile.nextlevel<teklevel+1) profile.nextlevel=teklevel+1 ;
+     saveProfile(profile) ;
    }
 }
 

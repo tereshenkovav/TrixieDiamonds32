@@ -10,6 +10,7 @@ var tekmode ;
 
 $include<rects.inc>
 $include<consts.inc>
+$include<profile.inc>
 
 const COLS = 5 ;
 
@@ -19,10 +20,8 @@ function Init(arg) {
 
    strings = system.loadObject("strings.json") ;  
 
-   if (tekmode=="arcade") {
-   var profile = system.loadObjectFromAppData("profile.json") ;
-   if (profile==null) nextlevel=0 ; else nextlevel = profile.nextlevel ;
-   }
+   if (tekmode=="arcade")
+     nextlevel=loadProfile().nextlevel ;
    else 
      nextlevel=LEVEL_COUNT ;
 
