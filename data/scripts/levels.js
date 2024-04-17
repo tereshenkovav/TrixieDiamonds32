@@ -7,6 +7,9 @@ var strings ;
 var nextlevel ;
 var teklevel ;
 var tekmode ;
+var profile ;
+var stars = new Array();
+var star_no ;
 
 $include<rects.inc>
 $include<consts.inc>
@@ -20,8 +23,9 @@ function Init(arg) {
 
    strings = system.loadObject("strings.json") ;  
 
+   profile = loadProfile() ;
    if (tekmode=="arcade")
-     nextlevel=loadProfile().nextlevel ;
+     nextlevel=profile.nextlevel ;
    else 
      nextlevel=LEVEL_COUNT ;
 
@@ -34,6 +38,11 @@ function Init(arg) {
    selector = game.loadSpritePCX8bit('selector.pcx',true) ;
    selector.setSmooth(false) ;
    selector.setScale(200) ;
+
+   star_no = game.loadSprite('star_no.png') ;
+   stars.push(game.loadSprite('star_easy.png')) ;
+   stars.push(game.loadSprite('star_norm.png')) ;
+   stars.push(game.loadSprite('star_hard.png')) ;
 
    snd_menu = game.loadSound("menu.wav") ;
    
@@ -55,7 +64,7 @@ function Init(arg) {
 function Render() {
    logo.renderTo(400,100) ;
 
-   renderRects(rects_menu,20,150,760,400) ;
+   renderRects(rects_menu,20,150,760,430) ;
 
    for (var i=0; i<LEVEL_COUNT; i++) {
      if (teklevel==i) 
@@ -63,6 +72,12 @@ function Render() {
      menu[i].printTo(100+(i % COLS)*150,230+Math.floor(i/COLS)*180) ;
      minimap.renderMiniMap(100+(i % COLS)*150,300+Math.floor(i/COLS)*180,
        i,i>nextlevel) ;
+
+     if (tekmode=="arcade")
+       for (var j=0; j<3; j++) {
+         var star = (getLevelsByDifficultN(profile,j).indexOf(i)!=-1)?stars[j]:star_no ;
+         star.renderTo(100+(i % COLS)*150+34*(j-1),356+Math.floor(i/COLS)*180) ;
+       }
    }
 
    return true ;

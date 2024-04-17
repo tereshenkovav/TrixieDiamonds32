@@ -114,6 +114,8 @@ function goEndGame(win) {
    if (win) {
      var profile = loadProfile() ;
      if (profile.nextlevel<teklevel+1) profile.nextlevel=teklevel+1 ;
+     if (getLevelsByDifficult(profile).indexOf(teklevel)==-1)
+       getLevelsByDifficult(profile).push(teklevel) ;
      saveProfile(profile) ;
    }
 }
