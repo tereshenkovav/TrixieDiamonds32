@@ -2,15 +2,14 @@
 
 Map::Map()
 {
+    clear() ;
 }
 
 void Map::setSize(int w, int h)
 {
     this->w=w;
     this->h=h;
-    for (int i=0; i<w; i++)
-        for (int j=0; j<h; j++)
-            map[i][j]=Sky ;
+    clear() ;
 }
 
 int Map::getWidth() const
@@ -21,6 +20,13 @@ int Map::getWidth() const
 int Map::getHeight() const
 {
     return h ;
+}
+
+void Map::clear()
+{
+    for (int i=0; i<MAPSIZE; i++)
+        for (int j=0; j<MAPSIZE; j++)
+            map[i][j]=Sky ;
 }
 
 void Map::setTerr(int i, int j, Terrain t)

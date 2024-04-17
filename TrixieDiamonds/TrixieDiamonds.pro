@@ -36,7 +36,8 @@ SOURCES += \
     extproc.cpp \
     main.cpp \
     map.cpp \
-    mapviewer.cpp
+    mapviewer.cpp \
+    minimap.cpp
 
 HEADERS += \
     $$COREDIR/animation.h \
@@ -50,7 +51,8 @@ HEADERS += \
     $$COREDIR/text.h \
     extproc.h \
     map.h \
-    mapviewer.h
+    mapviewer.h \
+    minimap.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -11,11 +11,16 @@
 #include "qgamesystem.h"
 #include "extproc.h"
 #include "mapviewer.h"
+#include "minimap.h"
 
-Game * createGame(const QString & scriptname, MapViewer & mapviewer, ExtProc & extproc) {
+const int WINDOW_WIDTH=800 ;
+const int WINDOW_HEIGHT=600 ;
+
+Game * createGame(const QString & scriptname, MapViewer & mapviewer, MiniMap & minimap, ExtProc & extproc) {
     Game * game = new Game("scripts/"+scriptname+".js") ;
     mapviewer.setEngine(&game->engine) ;
     game->addObjectToEngine("mapviewer",&mapviewer) ;
+    game->addObjectToEngine("minimap",&minimap) ;
 
     QObject::connect(game->sys,SIGNAL(writeMessage(QString)),&extproc,SLOT(getMessage(QString))) ;
     QObject::connect(game->sys,SIGNAL(writePair(QString,QVariant)),&extproc,SLOT(getPair(QString,QVariant))) ;
@@ -47,7 +52,7 @@ lab_reset_fullscreen:
     sf::Uint32 style ;
     if (isFullScreen()) style=sf::Style::Fullscreen ; else style=sf::Style::Close ;
 
-    sf::RenderWindow window(sf::VideoMode(800, 600),"MainWindow",style) ;
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),"MainWindow",style) ;
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);
     sf::Image ico ;
@@ -57,7 +62,10 @@ lab_reset_fullscreen:
     ExtProc extproc(&window) ;
     MapViewer mapviewer(&window) ;
 
-    Game * game = createGame(script,mapviewer,extproc);
+    MiniMap minimap(&window) ;
+    minimap.preloadMiniMaps(WINDOW_WIDTH,WINDOW_HEIGHT,0.125f) ;
+
+    Game * game = createGame(script,mapviewer,minimap,extproc);
     if (args=="argv") {
         QScriptValue arrarg = game->engine.newObject() ;
         for (int i=0; i<argc; i++)
@@ -117,7 +125,7 @@ lab_reset_fullscreen:
                 args  = QGameSystem::ScriptValue2String(game->getNewScriptArgs()) ;
                 game->UnInit() ;
                 delete game ;
-                game = createGame(script,mapviewer,extproc) ;
+                game = createGame(script,mapviewer,minimap,extproc) ;
                 if (!game->Init(args)) return 1 ;
             }
             // Убираем слишком большую дельту, вызванную инициализацией новой игры
@@ -126,7 +134,7 @@ lab_reset_fullscreen:
         if ((closehandled)&&(prevgame==nullptr)) {
             script = game->sys->getCloseHandlerScript() ;
             prevgame = game ;
-            game = createGame(script,mapviewer,extproc) ;
+            game = createGame(script,mapviewer,minimap,extproc) ;
             if (!game->Init("null")) return 1 ;
             // Убираем слишком большую дельту, вызванную инициализацией новой игры
             lasttime = clock.getElapsedTime().asSeconds() ;

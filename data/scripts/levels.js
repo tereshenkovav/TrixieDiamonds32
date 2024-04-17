@@ -11,6 +11,8 @@ var tekmode ;
 $include<rects.inc>
 $include<consts.inc>
 
+const COLS = 5 ;
+
 function Init(arg) {    
    teklevel = arg.level ;
    tekmode = arg.mode ;
@@ -38,11 +40,13 @@ function Init(arg) {
    
    for (var i=0; i<LEVEL_COUNT; i++)
      menu.push(game.loadText("arial.ttf",strings.levelhead+" "+(i+1),20)) ;
-   for (var i=0; i<LEVEL_COUNT; i++)
+   for (var i=0; i<LEVEL_COUNT; i++) {
+     menu[i].setAlignCenter() ;
      if (i<=nextlevel) 
        menu[i].setColor(200,200,200) ;
      else
        menu[i].setColor(70,70,70) ;
+   }
 
    makeRects(rects_menu) ;
 
@@ -52,11 +56,14 @@ function Init(arg) {
 function Render() {
    logo.renderTo(400,100) ;
 
-   renderRects(rects_menu,250,160,300,420) ;
+   renderRects(rects_menu,20,150,760,400) ;
 
-   for (var i=0; i<menu.length; i++) {
-     if (teklevel==i) selector.renderTo(300,210+i*35) ;
-     menu[i].printTo(340,200+i*35) ;
+   for (var i=0; i<LEVEL_COUNT; i++) {
+     if (teklevel==i) 
+       selector.renderTo(100+(i % COLS)*150,200+Math.floor(i/COLS)*180) ;
+     menu[i].printTo(100+(i % COLS)*150,230+Math.floor(i/COLS)*180) ;
+     minimap.renderMiniMap(100+(i % COLS)*150,300+Math.floor(i/COLS)*180,
+       i,i>nextlevel) ;
    }
 
    return true ;
@@ -65,15 +72,25 @@ function Render() {
 function Frame(dt) {
    if (game.isKeyDown(KEY_ESCAPE)) game.goToScript("menu",null) ;
 
-   if (game.isKeyDown(KEY_DOWN)) 
+   if (game.isKeyDown(KEY_RIGHT)) 
      if ((teklevel<menu.length-1)&&(teklevel<nextlevel)) {
        snd_menu.play() ;
        teklevel++ ;
      }
-   if (game.isKeyDown(KEY_UP)) 
+   if (game.isKeyDown(KEY_LEFT)) 
      if (teklevel>0) {
        snd_menu.play() ;
        teklevel-- ;
+     }
+   if (game.isKeyDown(KEY_DOWN)) 
+     if ((teklevel+COLS-1<menu.length-1)&&(teklevel+COLS-1<nextlevel)) {
+       snd_menu.play() ;
+       teklevel+=COLS ;
+     }
+   if (game.isKeyDown(KEY_UP)) 
+     if (teklevel>COLS-1) {
+       snd_menu.play() ;
+       teklevel-=COLS ;
      }
 
    if (game.isKeyDown(KEY_ENTER)) {
