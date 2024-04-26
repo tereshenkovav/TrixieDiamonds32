@@ -10,6 +10,7 @@ var trixie_walk ;
 var monster ;
 var scenestage ;
 var scenepos ;
+var profile ;
 
 const MENU_ARCADE = 0 ;
 const MENU_FREEPLAY = 1 ;
@@ -24,6 +25,7 @@ const MENU_EXIT = 8 ;
 var tekmenu = MENU_ARCADE ;
 
 $include<rects.inc>
+$include<profile.inc>
 
 function getDiffucultText(code) {
    if (code==0) return strings.text_easy ;
@@ -60,6 +62,8 @@ function loadLangResources() {
 
 function Init() {    
    loadLangResources() ;
+
+   profile = loadProfile() ;
 
    game.setBackgroundColor(0,0,0) ;
 
@@ -148,10 +152,14 @@ function Frame(dt) {
       }
       if (tekmenu==MENU_SOUND) { 
         system.setSoundOn(!system.isSoundOn()) ;
+        profile.soundon = system.isSoundOn() ;
+        saveProfile(profile) ;
         menu[MENU_SOUND].setText(strings.menusound+": "+(system.isSoundOn()?strings.text_on:strings.text_off)) ;
       }
       if (tekmenu==MENU_FULLSCREEN) { 
         system.switchFullScreen() ;
+        profile.fullscreen = system.isFullScreen() ;
+        saveProfile(profile) ;
       }
       if (tekmenu==MENU_HELP) game.goToScript("help",null) ;
       if (tekmenu==MENU_ABOUT) game.goToScript("about",null) ;

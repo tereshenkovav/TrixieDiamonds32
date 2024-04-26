@@ -3,6 +3,8 @@ var strings ;
 var text ;
 var stage ;
 
+$include<profile.inc>
+
 function loadLangResources() {
 
    strings = system.loadObject("strings.json") ;
@@ -27,6 +29,10 @@ function Init() {
 
    system.setDifficultCount(3) ;
    system.setDifficult(1) ;
+
+   var profile = loadProfile() ;
+   system.setSoundOn(profile.soundon) ;
+   if (system.isFullScreen()!=profile.fullscreen) system.switchFullScreen() ;
 
    game.setBackgroundColor(0,0,0) ;
 

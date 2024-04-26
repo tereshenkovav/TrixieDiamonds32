@@ -1,14 +1,15 @@
 function loadProfile() {
    var profile = system.loadObjectFromAppData("profile_v1.json") ;
    if (profile==null)
-     profile = { version: 1, nextlevel: 0, 
+     profile = { version: 1, nextlevel: 0, soundon: true, fullscreen: false,
        levels_easy:[],
        levels_norm:[],
        levels_hard:[]
      } ;
    else {
      // Этот фрагмент - как добавлять новые поля в профиль при изменении программы
-     //if (isNaN(profile.money_d)) profile.money_d=0 ;
+     if (isNaN(profile.soundon)) profile.soundon=true ;
+     if (isNaN(profile.fullscreen)) profile.fullscreen=false ;
    }
    return profile;
 }
