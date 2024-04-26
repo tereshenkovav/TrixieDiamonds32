@@ -66,17 +66,19 @@ function Render() {
 
    renderRects(rects_menu,20,150,760,430) ;
 
+   var H = 200 ;
+
    for (var i=0; i<LEVEL_COUNT; i++) {
      if (teklevel==i) 
-       selector.renderTo(100+(i % COLS)*150,200+Math.floor(i/COLS)*180) ;
-     menu[i].printTo(100+(i % COLS)*150,230+Math.floor(i/COLS)*180) ;
-     minimap.renderMiniMap(100+(i % COLS)*150,300+Math.floor(i/COLS)*180,
+       selector.renderTo(100+(i % COLS)*150,190+Math.floor(i/COLS)*H) ;
+     menu[i].printTo(100+(i % COLS)*150,210+Math.floor(i/COLS)*H) ;
+     minimap.renderMiniMap(100+(i % COLS)*150,280+Math.floor(i/COLS)*H,
        i,i>nextlevel) ;
 
      if (tekmode=="arcade")
        for (var j=0; j<3; j++) {
          var star = (getLevelsByDifficultN(profile,j).indexOf(i)!=-1)?stars[j]:star_no ;
-         star.renderTo(100+(i % COLS)*150+34*(j-1),356+Math.floor(i/COLS)*180) ;
+         star.renderTo(100+(i % COLS)*150+34*(j-1),336+Math.floor(i/COLS)*H) ;
        }
    }
 
