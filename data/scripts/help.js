@@ -145,7 +145,7 @@ function Render() {
       text_help.printTo(100,190) ;
 
       for (var i=0; i<8; i++)     
-       ((i<3)?spr_mana:spr_mana_gray).renderTo(300+i*(2*spr_mana.getWidth()+5),420) ;
+       ((i<3)?spr_mana:spr_mana_gray).renderTo(300+i*(2*spr_mana.getWidth()+5),450) ;
    }
    if (tekpage==4) {
       text_title.setText(strings.help5_1) ;

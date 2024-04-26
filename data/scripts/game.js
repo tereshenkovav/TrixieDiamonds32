@@ -29,6 +29,7 @@ var playerx ;
 var playervx ;
 var lastplayervsig ;
 var targety ;
+var horzjumplen ;
 var teleport_left=-1 ;
 var manacount ;
 var bonuscount ;
@@ -415,7 +416,17 @@ function Frame(dt) {
        if (manacount>=balance.JumpManaCost) {
          teleport.playOneTime() ;
          teleport_left=TELEPORT_HALFTIME ;
-         targety = playery+dy ;         
+         targety = playery+dy ;
+         horzjumplen = 0 ;
+         snd_teleport.play() ;
+       }
+     }
+     if (game.isKeyDown(KEY_SHIFT)) {
+       if (manacount>=balance.JumpManaCost) {
+         teleport.playOneTime() ;
+         teleport_left=TELEPORT_HALFTIME ;
+         targety = playery ;
+         horzjumplen = 3*trixie_width ;
          snd_teleport.play() ;
        }
      } 
@@ -450,8 +461,9 @@ function Frame(dt) {
      }
      else
      if ((teleport_left<=0)&& 
-         (mapviewer.canJumpTo(playerx,targety,trixie_width))) {
+         (mapviewer.canJumpTo(playerx+lastplayervsig*horzjumplen,targety,trixie_width))) {
             playery=targety ;
+            playerx+=lastplayervsig*horzjumplen ;
             manacount-=balance.JumpManaCost ;
          }
    }
