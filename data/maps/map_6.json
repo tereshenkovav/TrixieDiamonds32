@@ -12,8 +12,8 @@
    [
       {
         "x":400, 
-        "y":5,
-        "type":"mana"
+        "y":7,
+        "type":"overkill"
       }
    ]
 }

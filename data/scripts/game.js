@@ -13,6 +13,7 @@ var text_finpause ;
 var fireball ;
 var spr_bonus ;
 var spr_heart ;
+var spr_overkill ;
 var spr_mana ;
 var spr_bonus_gray ;
 var spr_heart_gray ;
@@ -198,6 +199,10 @@ function Init(args) {
    spr_mana_gray.setScale(200,200) ;
    spr_mana_gray.convertPixels("funcGray") ;
 
+   spr_overkill = game.loadSpritePCX8bit('overkill.pcx',true) ;
+   spr_overkill.setSmooth(false) ;
+   spr_overkill.setScale(200,200) ;
+
    snd_bonusget = game.loadSound("bonusget.wav") ;
    snd_fireball = game.loadSound("fireball.wav") ;
    snd_teleport = game.loadSound("teleport.wav") ;
@@ -322,6 +327,9 @@ function Render() {
      if (bonus[i].type=="mana")
        spr_mana.renderTo(bonus[i].x,mapviewer.getPlateY(bonus[i].y)-
          1.5*spr_mana.getHeight()-bonus[i].dy) ;
+     if (bonus[i].type=="overkill")
+       spr_overkill.renderTo(bonus[i].x,mapviewer.getPlateY(bonus[i].y)-
+         1.5*spr_overkill.getHeight()-bonus[i].dy) ;
    }
 
    for (var i=0; i<fire.length; i++) {
@@ -482,6 +490,10 @@ function Frame(dt) {
              if (manacount>balance.MaxMana) manacount=balance.MaxMana ;
              grab=true ;
            }
+         }
+         if (bonus[i].type=="overkill") {
+           monsters=[] ;
+           grab=true ;
          }
          if (grab) {
            bonus.splice(i,1) ;

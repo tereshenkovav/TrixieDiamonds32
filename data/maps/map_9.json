@@ -11,14 +11,14 @@
   "ExtraBonuses":
    [
       {
-        "x":600, 
-        "y":8,
+        "x":400, 
+        "y":4,
         "type":"mana"
       },
       {
         "x":400, 
-        "y":4,
-        "type":"mana"
+        "y":8,
+        "type":"overkill"
       }
    ]
 }
