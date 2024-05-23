@@ -15,7 +15,7 @@ function Init() {
    logo.play() ;
    logo.setSmooth(false) ;
 
-   text_final = game.loadText("arial.ttf",strings.textfinal,28) ;
+   text_final = game.loadText("fontover.otf",strings.textfinal,22) ;
    text_final.setColor(200,200,200) ;
 
    makeRects(rects_final) ;

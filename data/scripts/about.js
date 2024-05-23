@@ -16,14 +16,14 @@ function Init() {
    strings = system.loadObject("strings.json") ;
    game.setBackgroundColor(0,0,0) ;
    
-   text_about = game.loadText("arial.ttf","",20) ;
+   text_about = game.loadText("fontover.otf","",14) ;
    text_about.setColor(200,200,200) ;
 
-   text_title = game.loadText("arial.ttf","",24) ;
+   text_title = game.loadText("fontover.otf","",20) ;
    text_title.setColor(200,200,200) ;
    text_title.setAlignCenter() ;
 
-   text_ver = game.loadText("arial.ttf","",16) ;
+   text_ver = game.loadText("fontover.otf","",12) ;
    text_ver.setColor(160,160,160) ;
    text_ver.setAlignCenter() ;
 

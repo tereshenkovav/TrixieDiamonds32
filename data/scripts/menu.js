@@ -47,15 +47,15 @@ function loadLangResources() {
    langico.setSmooth(false) ;
 
    menu = [] ;
-   menu.push(game.loadText("arial.ttf",strings.menuarcade,20)) ;
-   menu.push(game.loadText("arial.ttf",strings.menufreeplay,20)) ;
-   menu.push(game.loadText("arial.ttf",strings.menudiff+": "+getDiffucultText(system.getDifficult()),20)) ;
-   menu.push(game.loadText("arial.ttf",strings.menulang+": "+system.getCurrentLanguage().toUpperCase(),20)) ;
-   menu.push(game.loadText("arial.ttf",strings.menusound+": "+(system.isSoundOn()?strings.text_on:strings.text_off),20)) ;
-   menu.push(game.loadText("arial.ttf",strings.menufullscreen+": "+(system.isFullScreen()?strings.text_on:strings.text_off),20)) ;
-   menu.push(game.loadText("arial.ttf",strings.menuhelp,20)) ;
-   menu.push(game.loadText("arial.ttf",strings.menuabout,20)) ;
-   menu.push(game.loadText("arial.ttf",strings.menuexit,20)) ;
+   menu.push(game.loadText("fontover.otf",strings.menuarcade,14)) ;
+   menu.push(game.loadText("fontover.otf",strings.menufreeplay,14)) ;
+   menu.push(game.loadText("fontover.otf",strings.menudiff+": "+getDiffucultText(system.getDifficult()),14)) ;
+   menu.push(game.loadText("fontover.otf",strings.menulang+": "+system.getCurrentLanguage().toUpperCase(),14)) ;
+   menu.push(game.loadText("fontover.otf",strings.menusound+": "+(system.isSoundOn()?strings.text_on:strings.text_off),14)) ;
+   menu.push(game.loadText("fontover.otf",strings.menufullscreen+": "+(system.isFullScreen()?strings.text_on:strings.text_off),14)) ;
+   menu.push(game.loadText("fontover.otf",strings.menuhelp,14)) ;
+   menu.push(game.loadText("fontover.otf",strings.menuabout,14)) ;
+   menu.push(game.loadText("fontover.otf",strings.menuexit,14)) ;
    for (var i=0; i<menu.length; i++)
      menu[i].setColor(200,200,200) ;
 }

@@ -273,21 +273,21 @@ function Init(args) {
                    vx: getRandomInt(10,20),
                    spr_idx: getRandomInt(0,4)}) ;
 
-   text_win = game.loadText("arial.ttf",strings.textwin,28) ;
+   text_win = game.loadText("fontover.otf",strings.textwin,22) ;
    text_win.setColor(200,200,200) ;
-   text_fail = game.loadText("arial.ttf",strings.textfail,28) ;
+   text_fail = game.loadText("fontover.otf",strings.textfail,22) ;
    text_fail.setColor(200,200,200) ;
-   text_back = game.loadText("arial.ttf",strings.textback,16) ;
+   text_back = game.loadText("fontover.otf",strings.textback,12) ;
    text_back.setColor(180,180,180) ;
-   text_next = game.loadText("arial.ttf",strings.textnext,16) ;
+   text_next = game.loadText("fontover.otf",strings.textnext,12) ;
    text_next.setColor(180,180,180) ;
-   text_restart = game.loadText("arial.ttf",strings.textrestart,16) ;
+   text_restart = game.loadText("fontover.otf",strings.textrestart,12) ;
    text_restart.setColor(180,180,180) ;
-   text_bonuscount = game.loadText("arial.ttf","",28) ;
+   text_bonuscount = game.loadText("fontover.otf","",22) ;
    text_bonuscount.setColor(255,255,255) ;
-   text_pause = game.loadText("arial.ttf",strings.textpause,28) ;
+   text_pause = game.loadText("fontover.otf",strings.textpause,22) ;
    text_pause.setColor(200,200,200) ;
-   text_finpause = game.loadText("arial.ttf",strings.textfinpause,16) ;
+   text_finpause = game.loadText("fontover.otf",strings.textfinpause,12) ;
    text_finpause.setColor(180,180,180) ;
 
    return true ;

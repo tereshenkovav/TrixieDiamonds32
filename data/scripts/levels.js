@@ -47,7 +47,7 @@ function Init(arg) {
    snd_menu = game.loadSound("menu.wav") ;
    
    for (var i=0; i<LEVEL_COUNT; i++)
-     menu.push(game.loadText("arial.ttf",strings.levelhead+" "+(i+1),20)) ;
+     menu.push(game.loadText("fontover.otf",strings.levelhead+" "+(i+1),14)) ;
    for (var i=0; i<LEVEL_COUNT; i++) {
      menu[i].setAlignCenter() ;
      if (i<=nextlevel) 

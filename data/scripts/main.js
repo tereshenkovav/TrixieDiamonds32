@@ -10,7 +10,7 @@ function loadLangResources() {
    strings = system.loadObject("strings.json") ;
    game.setGameTitle(strings.gametitle) ;
        
-   text = game.loadText("arial.ttf",strings.textnext,24) ;
+   text = game.loadText("fontover.otf",strings.textnext,18) ;
    text.setColor(200,200,200) ;
 }
 
@@ -49,7 +49,7 @@ function Render() {
    intro.setAlpha(stage) ;
    intro.renderTo(400,300) ;
 
-   if (stage>=255) text.printTo(600,550) ;
+   if (stage>=255) text.printTo(570,550) ;
 
    return true ;
 }

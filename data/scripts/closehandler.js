@@ -13,9 +13,9 @@ function Init(args) {
 
    makeRects(rects_gameover) ;
 
-   text_closeconfirm = game.loadText("arial.ttf",strings.textcloseconfirm,22) ;
+   text_closeconfirm = game.loadText("fontover.otf",strings.textcloseconfirm,16) ;
    text_closeconfirm.setColor(200,200,200) ;
-   text_closeconfirm_buts = game.loadText("arial.ttf",strings.textcloseconfirmbuts,16) ;
+   text_closeconfirm_buts = game.loadText("fontover.otf",strings.textcloseconfirmbuts,12) ;
    text_closeconfirm_buts.setColor(180,180,180) ;
 
    return true ;

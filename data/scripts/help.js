@@ -71,15 +71,15 @@ function Init() {
    }
    // end dub
 
-   text_helppage = game.loadText("arial.ttf","",20) ;
+   text_helppage = game.loadText("fontover.otf","",14) ;
    text_helppage.setColor(160,160,160) ;
    text_helppage.setAlignCenter() ;
-   text_helpinfo = game.loadText("arial.ttf",strings.helpinfo,20) ;
+   text_helpinfo = game.loadText("fontover.otf",strings.helpinfo,14) ;
    text_helpinfo.setColor(160,160,160) ;
    text_helpinfo.setAlignCenter() ;
-   text_help = game.loadText("arial.ttf","",24) ;
+   text_help = game.loadText("fontover.otf","",18) ;
    text_help.setColor(200,200,200) ;
-   text_title = game.loadText("arial.ttf","",24) ;
+   text_title = game.loadText("fontover.otf","",18) ;
    text_title.setColor(200,200,200) ;
    text_title.setAlignCenter() ;
 
@@ -104,7 +104,7 @@ function Render() {
       text_help.printTo(100,380) ;
    }
    if (tekpage==1) {
-      star.renderTo(580,240) ;
+      star.renderTo(620,240) ;
       text_help.setText(strings.help2_1) ;
       text_help.printTo(100,140) ;
       text_help.setText(strings.help2_2) ;
@@ -118,11 +118,11 @@ function Render() {
       text_title.setText(strings.help3_1) ;
       text_title.printTo(400,140) ;
       
-      spr_bonus.renderTo(590,200) ;
-      spr_bonus.renderTo(630,200) ;
-      spr_bonus.renderTo(670,200) ;
-      spr_bonus.renderTo(610,220) ;
-      spr_bonus.renderTo(650,220) ;
+      spr_bonus.renderTo(610,190) ;
+      spr_bonus.renderTo(650,190) ;
+      spr_bonus.renderTo(690,190) ;
+      spr_bonus.renderTo(630,210) ;
+      spr_bonus.renderTo(670,210) ;
 
       text_help.setText(strings.help3_2) ;
       text_help.printTo(110,190) ;
