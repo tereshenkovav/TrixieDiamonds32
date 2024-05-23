@@ -19,8 +19,9 @@ const MENU_LANG = 3 ;
 const MENU_SOUND = 4 ;
 const MENU_FULLSCREEN = 5 ;
 const MENU_HELP = 6 ;
-const MENU_ABOUT = 7 ;
-const MENU_EXIT = 8 ;
+const MENU_SECRETS = 7 ;
+const MENU_ABOUT = 8 ;
+const MENU_EXIT = 9 ;
 
 var tekmenu = MENU_ARCADE ;
 
@@ -54,6 +55,7 @@ function loadLangResources() {
    menu.push(game.loadText("fontover.otf",strings.menusound+": "+(system.isSoundOn()?strings.text_on:strings.text_off),14)) ;
    menu.push(game.loadText("fontover.otf",strings.menufullscreen+": "+(system.isFullScreen()?strings.text_on:strings.text_off),14)) ;
    menu.push(game.loadText("fontover.otf",strings.menuhelp,14)) ;
+   menu.push(game.loadText("fontover.otf",strings.menusecrets,14)) ;
    menu.push(game.loadText("fontover.otf",strings.menuabout,14)) ;
    menu.push(game.loadText("fontover.otf",strings.menuexit,14)) ;
    for (var i=0; i<menu.length; i++)
@@ -97,13 +99,13 @@ function Init() {
 function Render() {
    logo.renderTo(400,100) ;
 
-   renderRects(rects_menu,250,150,320,340) ;
+   renderRects(rects_menu,250,130,320,370) ;
 
    for (var i=0; i<menu.length; i++) {
-     if (tekmenu==i) selector.renderTo(300,190+i*32) ;
-     menu[i].printTo(340,180+i*32) ;
+     if (tekmenu==i) selector.renderTo(300,170+i*32) ;
+     menu[i].printTo(340,160+i*32) ;
    }
-   langico.renderTo(340+menu[MENU_LANG].getTextWidth()+30,180+MENU_LANG*32+12) ;
+   langico.renderTo(340+menu[MENU_LANG].getTextWidth()+30,160+MENU_LANG*32+12) ;
 
    if (scenestage==0) {
      trixie_walk.mirrorHorz(false) ;
@@ -162,6 +164,7 @@ function Frame(dt) {
         saveProfile(profile) ;
       }
       if (tekmenu==MENU_HELP) game.goToScript("help",null) ;
+      if (tekmenu==MENU_SECRETS) game.goToScript("secrets",null) ;
       if (tekmenu==MENU_ABOUT) game.goToScript("about",null) ;
       if (tekmenu==MENU_EXIT) return false ;
    }

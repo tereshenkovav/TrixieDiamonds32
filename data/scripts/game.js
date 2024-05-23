@@ -55,6 +55,8 @@ var fire = new Array() ;
 var ispaused ;
 var shield ;
 var shield_time ;
+var killcount = 0 ;
+var touchlist = new Array() ;
 
 const TELEPORT_HALFTIME=0.45 ;
 const SKY_SECTIONS=32;
@@ -73,6 +75,13 @@ function upMana() {
   if (gameover) return ;
 
   if (manacount<balance.MaxMana) manacount++ ;
+}
+
+function monsterCountByLeft() {
+  var r = 0 ;
+  for (var i=0; i<monsters.length; i++)
+    if ((monsters[i].y==playery)&&(monsters[i].x-playerx<0)) r++ ;
+  return r ;
 }
 
 function spawnMonster() {
@@ -442,6 +451,7 @@ function Frame(dt) {
      } 
      if (game.isKeyDown(KEY_CONTROL)) 
        if (manacount>=balance.FireballManaCost) { 
+         killcount = 0 ;
          fire.push({ x: playerx, y: playery,
                      vx: balance.FireballV*lastplayervsig }) ;
          manacount-=balance.FireballManaCost ;
@@ -449,6 +459,7 @@ function Frame(dt) {
        }
      if (game.isKeyDown(KEY_ALT)) 
        if ((manacount>=balance.ShieldManaCost)&&(shield_time<=0)) { 
+         touchlist = [] ;
          shield_time=balance.ProtectShieldMS/1000.0 ;
          manacount-=balance.ShieldManaCost ;
          snd_fireball.play() ;
@@ -463,7 +474,16 @@ function Frame(dt) {
      if ((teleport_left<=0)&& 
          (mapviewer.canJumpTo(playerx+lastplayervsig*horzjumplen,targety,trixie_width))) {
             playery=targety ;
+            var countleft = monsterCountByLeft() ;
             playerx+=lastplayervsig*horzjumplen ;
+            // Secret 1
+            if (countleft != monsterCountByLeft()) {
+              var profile = loadProfile() ;
+              if (!profile.secret_1) {
+                profile.secret_1=true ;
+                saveProfile(profile) ;
+              }
+            }
             manacount-=balance.JumpManaCost ;
          }
    }
@@ -472,8 +492,18 @@ function Frame(dt) {
      var i=0 ;
      while (i<monsters.length) {
        if ((monsters[i].y==fire[j].y)&&
-           (Math.abs(monsters[i].x-fire[j].x)<(monsters[i].width+fireball.getWidth())/2))
+           (Math.abs(monsters[i].x-fire[j].x)<(monsters[i].width+fireball.getWidth())/2)) {
          monsters.splice(i,1) ;
+         killcount++ ;
+         // Secret 0
+         if (killcount>=5) {
+            var profile = loadProfile() ;
+            if (!profile.secret_0) {
+              profile.secret_0=true ;
+              saveProfile(profile) ;
+            }
+         }
+       }
        else
         i++ ;
      }   
@@ -542,6 +572,21 @@ function Frame(dt) {
          else 
            goEndGame(false) ;
          break ;
+       }
+
+   // Secret 3
+   if (shield_time>0)
+     for (var i=0; i<monsters.length; i++)
+       if ((monsters[i].y==playery)&&
+           (Math.abs(monsters[i].x-playerx)<(monsters[i].width+trixie_walk.getWidth())/2)) {
+         if (touchlist.indexOf(i)==-1) touchlist.push(i) ;
+         if (touchlist.length>=3) {
+            var profile = loadProfile() ;
+            if (!profile.secret_2) {
+              profile.secret_2=true ;
+              saveProfile(profile) ;
+            }
+         }
        }
 
    var newplayerx = playerx+playervx*dt ;  
