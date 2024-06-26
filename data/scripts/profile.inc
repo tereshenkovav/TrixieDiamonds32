@@ -7,7 +7,15 @@ function loadProfile() {
        levels_hard:[],
        secret_0:false,
        secret_1:false,
-       secret_2:false
+       secret_2:false,
+       key_left: KEY_LEFT,
+       key_right: KEY_RIGHT,
+       key_teleportup: KEY_UP,
+       key_teleportdown: KEY_DOWN,
+       key_stop: KEY_SPACE,
+       key_fire: KEY_CONTROL,
+       key_shield: KEY_ALT,
+       key_jump: KEY_SHIFT
      } ;
    else {
      // Этот фрагмент - как добавлять новые поля в профиль при изменении программы
@@ -16,6 +24,14 @@ function loadProfile() {
      if (isNaN(profile.secret_0)) profile.secret_0=false ;
      if (isNaN(profile.secret_1)) profile.secret_1=false ;
      if (isNaN(profile.secret_2)) profile.secret_2=false ;
+     if (isNaN(profile.key_left)) profile.key_left=KEY_LEFT ;
+     if (isNaN(profile.key_right)) profile.key_right=KEY_RIGHT ;
+     if (isNaN(profile.key_teleportup)) profile.key_teleportup=KEY_UP ;
+     if (isNaN(profile.key_teleportdown)) profile.key_teleportdown=KEY_DOWN ;
+     if (isNaN(profile.key_stop)) profile.key_stop=KEY_SPACE ;
+     if (isNaN(profile.key_fire)) profile.key_fire=KEY_CONTROL ;
+     if (isNaN(profile.key_shield)) profile.key_shield=KEY_ALT ;
+     if (isNaN(profile.key_jump)) profile.key_jump=KEY_SHIFT ;
    }
    return profile;
 }

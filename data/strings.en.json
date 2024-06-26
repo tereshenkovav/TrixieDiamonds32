@@ -11,6 +11,7 @@
   "menuabout":"About",
   "menusound":"Sound",
   "menufullscreen":"Fullscreen",
+  "menucontrols":"Controls",
   "menulang":"Language",
   "menuexit":"Exit",
   "text_on":"On",
@@ -48,9 +49,18 @@
   "help4_1":"ACTIONS",
   "help4_2":"Trixie can walk, attack, cast shield, teleport\nhorizontally and between upper and lower\nplatforms.\nTeleportation consumes 1 point of mana.\nFireball toss consumes 3 points of mana.\nForce shield consumes 2 points of mana.\nThe mana pool restores by the time and is shown\nas bottles:",
   "help5_1":"CONTROLES",
-  "help5_2":"Left / Right arrow - walk\nSpace - stop\nUp / Down arrow - teleportation between\n  platforms\nCtrl - toss a fireball\nAlt - cast a shield\nShift - teleportation horizontally\nEscape - pause",
+  "help5_2":"Left / Right arrow - walk\nSpace - stop\nUp / Down arrow - teleportation between\n  platforms\nCtrl - toss a fireball\nAlt - cast a shield\nShift - teleportation horizontally\nEscape - pause\n\nThe keys can be redefined in the menu",
   "about_title":"Trixie and diamonds game",
   "about_version":"{0}, commit {1}, branch {2}",
   "about_info":"  An arcade game about Trixie and collecting diamonds.\nDeveloped with C++/QtScript/SFML.\nAuthor - Aleksandr V. Tereshenkov.\nHome pages: tav-developer.itch.io and\ngithub.com/tereshenkovav",
-  "about_credits":"Credits"
+  "about_credits":"Credits",
+  "key_left":"Moving left",
+  "key_right":"Moving right",
+  "key_teleportup":"Teleport up",
+  "key_teleportdown":"Teleport down",
+  "key_stop":"Stop moving",
+  "key_fire":"Toss a fireball",
+  "key_shield":"Cast a shield",
+  "key_jump":"Teleport horizontally",
+  "menu_2menu":"To main menu"
 }

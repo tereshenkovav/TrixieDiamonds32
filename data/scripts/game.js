@@ -57,6 +57,7 @@ var shield ;
 var shield_time ;
 var killcount = 0 ;
 var touchlist = new Array() ;
+var profile ;
 
 const TELEPORT_HALFTIME=0.45 ;
 const SKY_SECTIONS=32;
@@ -123,7 +124,6 @@ function goEndGame(win) {
    gameover=true ; 
    iswin=win ;
    if (win) {
-     var profile = loadProfile() ;
      if (profile.nextlevel<teklevel+1) profile.nextlevel=teklevel+1 ;
      if (getLevelsByDifficult(profile).indexOf(teklevel)==-1)
        getLevelsByDifficult(profile).push(teklevel) ;
@@ -299,6 +299,7 @@ function Init(args) {
    text_finpause = game.loadText("fontover.otf",strings.textfinpause,12) ;
    text_finpause.setColor(180,180,180) ;
 
+   profile = loadProfile() ;
    return true ;
 }
  
@@ -420,8 +421,8 @@ function Frame(dt) {
      }
 
    if ((teleport_left<=0)&&(!gameover)) {
-     if (game.isOneOfKeysDown([KEY_UP,KEY_DOWN])) {
-       var dy = game.isKeyDown(KEY_DOWN)?1:-1 ;
+     if (game.isOneOfKeysDown([profile.key_teleportup,profile.key_teleportdown])) {
+       var dy = game.isKeyDown(profile.key_teleportdown)?1:-1 ;
        if (manacount>=balance.JumpManaCost) {
          teleport.playOneTime() ;
          teleport_left=TELEPORT_HALFTIME ;
@@ -430,7 +431,7 @@ function Frame(dt) {
          snd_teleport.play() ;
        }
      }
-     if (game.isKeyDown(KEY_SHIFT)) {
+     if (game.isKeyDown(profile.key_jump)) {
        if (manacount>=balance.JumpManaCost) {
          teleport.playOneTime() ;
          teleport_left=TELEPORT_HALFTIME ;
@@ -439,17 +440,17 @@ function Frame(dt) {
          snd_teleport.play() ;
        }
      } 
-     if (game.isKeyDown(KEY_SPACE)) {
+     if (game.isKeyDown(profile.key_stop)) {
        playervx=0 ;
      }
-     if (game.isOneOfKeysDown([KEY_LEFT,KEY_RIGHT])) { 
-       var dx = game.isKeyDown(KEY_RIGHT)?1:-1 ;
+     if (game.isOneOfKeysDown([profile.key_left,profile.key_right])) { 
+       var dx = game.isKeyDown(profile.key_right)?1:-1 ;
        playervx=dx*balance.PlayerV ;
        lastplayervsig=dx ;
        trixie_wait.mirrorHorz(dx!=1) ;
        trixie_walk.mirrorHorz(dx!=1) ;
      } 
-     if (game.isKeyDown(KEY_CONTROL)) 
+     if (game.isKeyDown(profile.key_fire)) 
        if (manacount>=balance.FireballManaCost) { 
          killcount = 0 ;
          fire.push({ x: playerx, y: playery,
@@ -457,7 +458,7 @@ function Frame(dt) {
          manacount-=balance.FireballManaCost ;
          snd_fireball.play() ;
        }
-     if (game.isKeyDown(KEY_ALT)) 
+     if (game.isKeyDown(profile.key_shield)) 
        if ((manacount>=balance.ShieldManaCost)&&(shield_time<=0)) { 
          touchlist = [] ;
          shield_time=balance.ProtectShieldMS/1000.0 ;
@@ -478,7 +479,6 @@ function Frame(dt) {
             playerx+=lastplayervsig*horzjumplen ;
             // Secret 1
             if (countleft != monsterCountByLeft()) {
-              var profile = loadProfile() ;
               if (!profile.secret_1) {
                 profile.secret_1=true ;
                 saveProfile(profile) ;
@@ -497,7 +497,6 @@ function Frame(dt) {
          killcount++ ;
          // Secret 0
          if (killcount>=5) {
-            var profile = loadProfile() ;
             if (!profile.secret_0) {
               profile.secret_0=true ;
               saveProfile(profile) ;
@@ -581,7 +580,6 @@ function Frame(dt) {
            (Math.abs(monsters[i].x-playerx)<(monsters[i].width+trixie_walk.getWidth())/2)) {
          if (touchlist.indexOf(i)==-1) touchlist.push(i) ;
          if (touchlist.length>=3) {
-            var profile = loadProfile() ;
             if (!profile.secret_2) {
               profile.secret_2=true ;
               saveProfile(profile) ;

@@ -62,7 +62,7 @@ function Init(arg) {
 }
 
 function Render() {
-   logo.renderTo(400,100) ;
+   logo.renderTo(400,70) ;
 
    renderRects(rects_menu,20,150,760,430) ;
 
