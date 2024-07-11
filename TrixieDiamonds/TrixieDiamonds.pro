@@ -33,6 +33,7 @@ SOURCES += \
     $$COREDIR/sound.cpp \
     $$COREDIR/sprite.cpp \
     $$COREDIR/text.cpp \
+    $$COREDIR/pixeltext.cpp \
     extproc.cpp \
     main.cpp \
     map.cpp \
@@ -49,6 +50,7 @@ HEADERS += \
     $$COREDIR/sound.h \
     $$COREDIR/sprite.h \
     $$COREDIR/text.h \
+    $$COREDIR/pixeltext.h \
     extproc.h \
     map.h \
     mapviewer.h \

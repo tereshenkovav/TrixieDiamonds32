@@ -49,17 +49,17 @@ function loadLangResources() {
    langico.setSmooth(false) ;
 
    menu = [] ;
-   menu.push(game.loadText("fontover.otf",strings.menuarcade,14)) ;
-   menu.push(game.loadText("fontover.otf",strings.menufreeplay,14)) ;
-   menu.push(game.loadText("fontover.otf",strings.menudiff+": "+getDiffucultText(system.getDifficult()),14)) ;
-   menu.push(game.loadText("fontover.otf",strings.menulang+": "+system.getCurrentLanguage().toUpperCase(),14)) ;
-   menu.push(game.loadText("fontover.otf",strings.menusound+": "+(system.isSoundOn()?strings.text_on:strings.text_off),14)) ;
-   menu.push(game.loadText("fontover.otf",strings.menufullscreen+": "+(system.isFullScreen()?strings.text_on:strings.text_off),14)) ;
-   menu.push(game.loadText("fontover.otf",strings.menucontrols,14)) ;
-   menu.push(game.loadText("fontover.otf",strings.menuhelp,14)) ;
-   menu.push(game.loadText("fontover.otf",strings.menusecrets,14)) ;
-   menu.push(game.loadText("fontover.otf",strings.menuabout,14)) ;
-   menu.push(game.loadText("fontover.otf",strings.menuexit,14)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.menuarcade,2)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.menufreeplay,2)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.menudiff+": "+getDiffucultText(system.getDifficult()),2)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.menulang+": "+system.getCurrentLanguage().toUpperCase(),2)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.menusound+": "+(system.isSoundOn()?strings.text_on:strings.text_off),2)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.menufullscreen+": "+(system.isFullScreen()?strings.text_on:strings.text_off),2)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.menucontrols,2)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.menuhelp,2)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.menusecrets,2)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.menuabout,2)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.menuexit,2)) ;
    for (var i=0; i<menu.length; i++)
      menu[i].setColor(200,200,200) ;
 }
@@ -101,13 +101,13 @@ function Init() {
 function Render() {
    logo.renderTo(400,70) ;
 
-   renderRects(rects_menu,250,100,320,400) ;
+   renderRects(rects_menu,230,100,360,400) ;
 
    for (var i=0; i<menu.length; i++) {
-     if (tekmenu==i) selector.renderTo(300,140+i*32) ;
-     menu[i].printTo(340,130+i*32) ;
+     if (tekmenu==i) selector.renderTo(280,140+i*32) ;
+     menu[i].printTo(320,130+i*32) ;
    }
-   langico.renderTo(340+menu[MENU_LANG].getTextWidth()+30,130+MENU_LANG*32+12) ;
+   langico.renderTo(320+menu[MENU_LANG].getTextWidth()+30,126+MENU_LANG*32+12) ;
 
    if (scenestage==0) {
      trixie_walk.mirrorHorz(false) ;

@@ -28,26 +28,26 @@ function Init() {
    deny.setSmooth(false) ;
    deny.setScale(200,200) ;
 
-   text_about = game.loadText("fontover.otf","",14) ;
+   text_about = game.loadPixelText("font.8x8","",2) ;
    text_about.setColor(200,200,200) ;
 
-   text_title = game.loadText("fontover.otf","",20) ;
+   text_title = game.loadPixelText("font.8x8","",2.5) ;
    text_title.setColor(200,200,200) ;
    text_title.setAlignCenter() ;
 
    var s = strings.text_secret+" 1: " ;
    if (profile.secret_0) s+=strings.secret_0 ; else s+=strings.secret_hidden ;
-   text_secret0 = game.loadText("fontover.otf",s,16) ;
+   text_secret0 = game.loadPixelText("font.8x8",s,1.75) ;
    text_secret0.setColor(200,200,200) ;
 
    s = strings.text_secret+" 2: " ;
    if (profile.secret_1) s+=strings.secret_1 ; else s+=strings.secret_hidden ;
-   text_secret1 = game.loadText("fontover.otf",s,16) ;
+   text_secret1 = game.loadPixelText("font.8x8",s,1.75) ;
    text_secret1.setColor(200,200,200) ;
 
    s = strings.text_secret+" 3: " ;
    if (profile.secret_2) s+=strings.secret_2 ; else s+=strings.secret_hidden ;
-   text_secret2 = game.loadText("fontover.otf",s,16) ;
+   text_secret2 = game.loadPixelText("font.8x8",s,1.75) ;
    text_secret2.setColor(200,200,200) ;
 
    rline = game.createRect(120,120,120) ;

@@ -13,9 +13,9 @@ function Init(args) {
 
    makeRects(rects_gameover) ;
 
-   text_closeconfirm = game.loadText("fontover.otf",strings.textcloseconfirm,16) ;
+   text_closeconfirm = game.loadPixelText("font.8x8",strings.textcloseconfirm,1.8) ;
    text_closeconfirm.setColor(200,200,200) ;
-   text_closeconfirm_buts = game.loadText("fontover.otf",strings.textcloseconfirmbuts,12) ;
+   text_closeconfirm_buts = game.loadPixelText("font.8x8",strings.textcloseconfirmbuts,1.6) ;
    text_closeconfirm_buts.setColor(180,180,180) ;
 
    return true ;

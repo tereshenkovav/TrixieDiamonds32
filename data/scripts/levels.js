@@ -47,7 +47,7 @@ function Init(arg) {
    snd_menu = game.loadSound("menu.wav") ;
    
    for (var i=0; i<LEVEL_COUNT; i++)
-     menu.push(game.loadText("fontover.otf",strings.levelhead+" "+(i+1),14)) ;
+     menu.push(game.loadPixelText("font.8x8",strings.levelhead+" "+(i+1),2)) ;
    for (var i=0; i<LEVEL_COUNT; i++) {
      menu[i].setAlignCenter() ;
      if (i<=nextlevel) 
@@ -71,7 +71,7 @@ function Render() {
    for (var i=0; i<LEVEL_COUNT; i++) {
      if (teklevel==i) 
        selector.renderTo(100+(i % COLS)*150,190+Math.floor(i/COLS)*H) ;
-     menu[i].printTo(100+(i % COLS)*150,210+Math.floor(i/COLS)*H) ;
+     menu[i].printTo(100+(i % COLS)*150,220+Math.floor(i/COLS)*H) ;
      minimap.renderMiniMap(100+(i % COLS)*150,280+Math.floor(i/COLS)*H,
        i,i>nextlevel) ;
 

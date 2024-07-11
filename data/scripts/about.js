@@ -16,14 +16,14 @@ function Init() {
    strings = system.loadObject("strings.json") ;
    game.setBackgroundColor(0,0,0) ;
    
-   text_about = game.loadText("fontover.otf","",14) ;
+   text_about = game.loadPixelText("font.8x8","",2) ;
    text_about.setColor(200,200,200) ;
 
-   text_title = game.loadText("fontover.otf","",20) ;
+   text_title = game.loadPixelText("font.8x8","",2.5) ;
    text_title.setColor(200,200,200) ;
    text_title.setAlignCenter() ;
 
-   text_ver = game.loadText("fontover.otf","",12) ;
+   text_ver = game.loadPixelText("font.8x8","",1.5) ;
    text_ver.setColor(160,160,160) ;
    text_ver.setAlignCenter() ;
 
@@ -56,9 +56,9 @@ function Render() {
    text_ver.setText(ver_str) ;
    text_ver.printTo(400,130) ;
    text_about.setText(strings.about_info) ;
-   text_about.printTo(100,180) ;
+   text_about.printTo(100,170) ;
    text_title.setText(strings.about_credits) ;
-   text_title.printTo(400,280) ;
+   text_title.printTo(400,290) ;
    text_about.setText(credits_str) ;
    text_about.printTo(100,330) ;
    return true ;

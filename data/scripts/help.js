@@ -71,15 +71,15 @@ function Init() {
    }
    // end dub
 
-   text_helppage = game.loadText("fontover.otf","",14) ;
+   text_helppage = game.loadPixelText("font.8x8","",1.8) ;
    text_helppage.setColor(160,160,160) ;
    text_helppage.setAlignCenter() ;
-   text_helpinfo = game.loadText("fontover.otf",strings.helpinfo,14) ;
+   text_helpinfo = game.loadPixelText("font.8x8",strings.helpinfo,1.8) ;
    text_helpinfo.setColor(160,160,160) ;
    text_helpinfo.setAlignCenter() ;
-   text_help = game.loadText("fontover.otf","",18) ;
+   text_help = game.loadPixelText("font.8x8","",2) ;
    text_help.setColor(200,200,200) ;
-   text_title = game.loadText("fontover.otf","",18) ;
+   text_title = game.loadPixelText("font.8x8","",2) ;
    text_title.setColor(200,200,200) ;
    text_title.setAlignCenter() ;
 
@@ -156,9 +156,9 @@ function Render() {
    }
 
    text_helppage.setText(strings.helppage+" "+(tekpage+1)+" / "+PAGE_COUNT) ;
-   text_helppage.printTo(400,70) ;
+   text_helppage.printTo(400,76) ;
 
-   text_helpinfo.printTo(400,500) ;
+   text_helpinfo.printTo(400,510) ;
 
    rline.drawTo(80,105,640,3) ;
    rline.drawTo(80,490,640,3) ;

@@ -17,16 +17,16 @@ function getkstr(key,n) {
 
 function rebuildMenu() {
    menu = [] ;
-   menu.push(game.loadText("fontover.otf",strings.key_left+":  "+getkstr(profile.key_left,0),14)) ;
-   menu.push(game.loadText("fontover.otf",strings.key_right+":  "+getkstr(profile.key_right,1),14)) ;
-   menu.push(game.loadText("fontover.otf",strings.key_teleportup+":  "+getkstr(profile.key_teleportup,2),14)) ;
-   menu.push(game.loadText("fontover.otf",strings.key_teleportdown+":  "+getkstr(profile.key_teleportdown,3),14)) ;
-   menu.push(game.loadText("fontover.otf",strings.key_stop+":  "+getkstr(profile.key_stop,4),14)) ;
-   menu.push(game.loadText("fontover.otf",strings.key_fire+":  "+getkstr(profile.key_fire,5),14)) ;
-   menu.push(game.loadText("fontover.otf",strings.key_shield+":  "+getkstr(profile.key_shield,6),14)) ;
-   menu.push(game.loadText("fontover.otf",strings.key_jump+":  "+getkstr(profile.key_jump,7),14)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.key_left+":  "+getkstr(profile.key_left,0),1.8)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.key_right+":  "+getkstr(profile.key_right,1),1.8)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.key_teleportup+":  "+getkstr(profile.key_teleportup,2),1.8)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.key_teleportdown+":  "+getkstr(profile.key_teleportdown,3),1.8)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.key_stop+":  "+getkstr(profile.key_stop,4),1.8)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.key_fire+":  "+getkstr(profile.key_fire,5),1.8)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.key_shield+":  "+getkstr(profile.key_shield,6),1.8)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.key_jump+":  "+getkstr(profile.key_jump,7),1.8)) ;
 
-   menu.push(game.loadText("fontover.otf",strings.menu_2menu,14)) ;
+   menu.push(game.loadPixelText("font.8x8",strings.menu_2menu,1.8)) ;
    for (var i=0; i<menu.length; i++)
      menu[i].setColor(200,200,200) ;
 

@@ -282,21 +282,21 @@ function Init(args) {
                    vx: getRandomInt(10,20),
                    spr_idx: getRandomInt(0,4)}) ;
 
-   text_win = game.loadText("fontover.otf",strings.textwin,22) ;
+   text_win = game.loadPixelText("font.8x8",strings.textwin,2.5) ;
    text_win.setColor(200,200,200) ;
-   text_fail = game.loadText("fontover.otf",strings.textfail,22) ;
+   text_fail = game.loadPixelText("font.8x8",strings.textfail,2.5) ;
    text_fail.setColor(200,200,200) ;
-   text_back = game.loadText("fontover.otf",strings.textback,12) ;
+   text_back = game.loadPixelText("font.8x8",strings.textback,1.5) ;
    text_back.setColor(180,180,180) ;
-   text_next = game.loadText("fontover.otf",strings.textnext,12) ;
+   text_next = game.loadPixelText("font.8x8",strings.textnext,1.5) ;
    text_next.setColor(180,180,180) ;
-   text_restart = game.loadText("fontover.otf",strings.textrestart,12) ;
+   text_restart = game.loadPixelText("font.8x8",strings.textrestart,1.5) ;
    text_restart.setColor(180,180,180) ;
-   text_bonuscount = game.loadText("fontover.otf","",22) ;
+   text_bonuscount = game.loadPixelText("font.8x8","",2.5) ;
    text_bonuscount.setColor(255,255,255) ;
-   text_pause = game.loadText("fontover.otf",strings.textpause,22) ;
+   text_pause = game.loadPixelText("font.8x8",strings.textpause,2.5) ;
    text_pause.setColor(200,200,200) ;
-   text_finpause = game.loadText("fontover.otf",strings.textfinpause,12) ;
+   text_finpause = game.loadPixelText("font.8x8",strings.textfinpause,1.5) ;
    text_finpause.setColor(180,180,180) ;
 
    profile = loadProfile() ;
@@ -367,30 +367,30 @@ function Render() {
    else {
      spr_bonus.renderTo(450,20) ;
      text_bonuscount.setText(" x "+bonuscount) ;
-     text_bonuscount.printTo(470,2) ;
+     text_bonuscount.printTo(470,10) ;
    }
 
    if (gameover&&(!teleport.isPlayed())) {
-     renderRects(rects_gameover,250,220,300,160) ;
+     renderRects(rects_gameover,240,220,320,160) ;
      if (iswin) {
-       trixie_win.renderTo(310,300) ;
-       text_win.printTo(360,250) ;
-       text_back.printTo(360,300) ;
-       text_next.printTo(360,320) ;
+       trixie_win.renderTo(300,300) ;
+       text_win.printTo(350,250) ;
+       text_back.printTo(350,300) ;
+       text_next.printTo(350,320) ;
      }
      else {
-       trixie_wait.renderTo(310,300) ;
-       text_fail.printTo(360,250) ;
-       text_back.printTo(360,300) ;
-       text_restart.printTo(360,320) ;
+       trixie_wait.renderTo(300,300) ;
+       text_fail.printTo(350,250) ;
+       text_back.printTo(350,300) ;
+       text_restart.printTo(350,320) ;
      }
    }
 
    if (ispaused) {
-     renderRects(rects_gameover,250,220,300,160) ;
-     trixie_wait.renderTo(310,300) ;
-     text_pause.printTo(360,250) ;
-     text_finpause.printTo(360,310) ;
+     renderRects(rects_gameover,240,220,320,160) ;
+     trixie_wait.renderTo(300,300) ;
+     text_pause.printTo(350,250) ;
+     text_finpause.printTo(350,310) ;
    }
 
    return true ;
