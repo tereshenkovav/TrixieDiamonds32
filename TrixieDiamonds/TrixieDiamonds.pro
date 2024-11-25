@@ -78,6 +78,12 @@ unix {
   CONFIG(debug, debug|release): LIBS += -lsfml-audio-d -lsfml-graphics-d -lsfml-network-d -lsfml-window-d -lsfml-system-d
 }
 
+macx {
+  LIBS+=-L"/usr/local/lib"
+  INCLUDEPATH+=/usr/local/include
+  DEPENDPATH+=/usr/local/include
+}
+
 win32 {
         RC_FILE += main.rc
         OTHER_FILES += main.rc
