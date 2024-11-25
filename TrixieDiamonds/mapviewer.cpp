@@ -123,8 +123,8 @@ void MapViewer::loadMapFromFile(const QString &mapfile)
     QFile file(mapfile);
     if (!((file.exists())&&(file.open(QIODevice::ReadOnly)))) return ;
 
-    int w = file.readLine().toInt() ;
-    int h = file.readLine().toInt() ;
+    int w = file.readLine().trimmed().toInt() ;
+    int h = file.readLine().trimmed().toInt() ;
     map.setSize(w,h) ;
 
     for (int j=0; j<map.getHeight(); j++) {
