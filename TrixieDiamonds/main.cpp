@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 #endif
 #if (defined (Q_OS_MACOS))
     // Поправка для корректного старта в .app
-    if (QDir::current().path().endsWith("/MacOS")) QDir::setCurrent("data") ;
+    QDir::setCurrent(QCoreApplication::applicationDirPath()+"/data") ;
 #endif
 
     QString script="main" ;
