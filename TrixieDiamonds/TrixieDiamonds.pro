@@ -82,6 +82,7 @@ macx {
   LIBS+=-L"/usr/local/lib"
   INCLUDEPATH+=/usr/local/include
   DEPENDPATH+=/usr/local/include
+  QMAKE_RPATHDIR=@executable_path/../Frameworks
 }
 
 win32 {
