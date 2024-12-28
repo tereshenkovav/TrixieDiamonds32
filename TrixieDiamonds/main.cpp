@@ -22,12 +22,17 @@ Game * createGame(const QString & scriptname, MapViewer & mapviewer, MiniMap & m
     game->addObjectToEngine("mapviewer",&mapviewer) ;
     game->addObjectToEngine("minimap",&minimap) ;
 
-    QObject::connect(game->sys,SIGNAL(writeMessage(QString)),&extproc,SLOT(getMessage(QString))) ;
-    QObject::connect(game->sys,SIGNAL(writePair(QString,QVariant)),&extproc,SLOT(getPair(QString,QVariant))) ;
-    QObject::connect(game,SIGNAL(sendLog(QString)),&extproc,SLOT(getMessage(QString))) ;
-    QObject::connect(game,SIGNAL(sendTitle(QString)),&extproc,SLOT(setTitle(QString))) ;
-    QObject::connect(game->sys,SIGNAL(showCursor(bool)),&extproc,SLOT(switchCursor(bool))) ;
+    extproc.assignToGame(game) ;
 
+    return game ;
+}
+
+// Вынесен отдельно, потому что для него не надо и даже вредно устанавливать объекты игры mapview.
+// Это ломает дальнейшую игру после возврата к основной сцене.
+Game * createCloseHandler(const QString & scriptname, ExtProc & extproc) {
+    Game * game = new Game("scripts/"+scriptname+".js") ;
+
+    extproc.assignToGame(game) ;
     return game ;
 }
 
@@ -134,7 +139,7 @@ lab_reset_fullscreen:
         if ((closehandled)&&(prevgame==nullptr)) {
             script = game->sys->getCloseHandlerScript() ;
             prevgame = game ;
-            game = createGame(script,mapviewer,minimap,extproc) ;
+            game = createCloseHandler(script,extproc) ;
             if (!game->Init("null")) return 1 ;
             // Убираем слишком большую дельту, вызванную инициализацией новой игры
             lasttime = clock.getElapsedTime().asSeconds() ;

@@ -4,12 +4,14 @@
 #include <QObject>
 #include <QVariant>
 #include <SFML/Graphics.hpp>
+#include "game.h"
 
 class ExtProc: public QObject
 {
     Q_OBJECT
 public:
     ExtProc(sf::RenderWindow * renderwindow) ;
+    void assignToGame(Game * game);
 private:
     sf::RenderWindow * renderwindow ;
 
